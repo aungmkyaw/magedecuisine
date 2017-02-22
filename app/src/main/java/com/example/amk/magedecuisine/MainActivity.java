@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "com.example.sukhdipsingh.magecuisine.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.example.amk.magedecuisine.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
