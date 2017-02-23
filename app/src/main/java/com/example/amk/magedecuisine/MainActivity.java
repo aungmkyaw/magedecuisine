@@ -32,4 +32,13 @@ public class MainActivity extends AppCompatActivity {
         Button pantryButton = (Button) findViewById(R.id.button14);
         startActivity(intent);
     }
+
+    /** CALLED WHEN USER CLICKS BOOKMARKS BUTTON **/
+    public void BookmarksAction(View view)
+    {
+        Intent intent = new Intent(this, Bookmarks.class);
+        Button BookmarksButton = (Button) findViewById(R.id.button15);
+        startActivity(intent);
+    }
+
 }
