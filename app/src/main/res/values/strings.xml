@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MageDeCuisine</string>
+    <string name="recipeBuilder">Recipe Builder</string>
+    <string name="pantry">Pantry</string>
+    <string name="bookmarks">Bookmarks</string>
 </resources>

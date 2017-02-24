@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -12,44 +11,53 @@
     tools:context="com.example.amk.magedecuisine.MainActivity">
 
     <Button
-        android:text="Recipe Finder"
+        android:text="@string/pantry"
+        android:onClick="pantryAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRecipe"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/button14"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="BookMark"
+        android:text="@string/bookmarks"
+        android:onClick="BookmarksAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnBook"
-        android:layout_above="@+id/btnRecipe"
+        android:layout_below="@+id/button14"
+        android:layout_alignRight="@+id/button14"
+        android:layout_alignEnd="@+id/button14"
+        android:id="@+id/button15"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Pantry"
+        android:text="@string/recipeBuilder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnPantry"
-        android:layout_above="@+id/btnBook"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button15"
+        android:layout_alignLeft="@+id/button15"
+        android:layout_alignStart="@+id/button15"
+        android:id="@+id/button16"
+        android:onClick="doSomething"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         app:srcCompat="@drawable/mdclogo"
         android:id="@+id/Logo"
         android:layout_marginTop="14dp"
+=======
+        android:src="@drawable/magedecuisinelogo"
+>>>>>>> fd828d3b533f0d30921b256ee88d762b944fa3a3
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button14"
+        />
 </RelativeLayout>
