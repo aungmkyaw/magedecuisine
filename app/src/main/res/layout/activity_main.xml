@@ -47,7 +47,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/MageDeCuisineLogo"
+        app:srcCompat="@drawable/mdclogo"
         android:id="@+id/Logo"
         android:layout_marginTop="14dp"
         android:layout_alignParentTop="true"
