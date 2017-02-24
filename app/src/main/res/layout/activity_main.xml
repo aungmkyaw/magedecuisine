@@ -49,13 +49,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        app:srcCompat="@drawable/mdclogo"
+        android:src="@drawable/mdclogo"
         android:id="@+id/Logo"
         android:layout_marginTop="14dp"
-=======
-        android:src="@drawable/magedecuisinelogo"
->>>>>>> fd828d3b533f0d30921b256ee88d762b944fa3a3
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/button14"
