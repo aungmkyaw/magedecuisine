@@ -17,4 +17,6 @@
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true" />
+
+
 </RelativeLayout>
