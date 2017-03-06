@@ -29,15 +29,18 @@ public class DisplayMessageActivity extends AppCompatActivity {
         layout.addView(textView);
     }
 
-    public void APICall()
+    public HttpResponse<JsonNode> APICall()
     {
+        HttpResponse<JsonNode> response = null;
         try {
-            HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
+            response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
                     .header("X-Mashape-Key", "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY")
                     .header("Accept", "application/json")
                     .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
+
+        return response;
     }
 }
