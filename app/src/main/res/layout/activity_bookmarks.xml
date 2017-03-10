@@ -18,5 +18,47 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true" />
 
+    <EditText
+        android:id="@+id/bmInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:onClick="addButtonClicked"
+        android:text="Add"
+        android:layout_below="@+id/bmInput"
+        android:layout_alignLeft="@+id/bmInput"
+        android:layout_alignStart="@+id/bmInput" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignEnd="@+id/bmInput"
+        android:layout_alignRight="@+id/bmInput"
+        android:onClick="deleteButtonClicked"
+        android:text="Delete" />
+
+    <TextView
+        android:id="@+id/bookMarkview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp" />
+
 
 </RelativeLayout>
