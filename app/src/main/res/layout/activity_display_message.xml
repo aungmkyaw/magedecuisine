@@ -10,4 +10,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.amk.magedecuisine.DisplayMessageActivity">
 
+    <EditText
+        android:id="@+id/edit_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Item"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:text="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/edit_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp" />
+
 </RelativeLayout>
