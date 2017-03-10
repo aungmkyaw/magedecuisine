@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
@@ -23,24 +22,26 @@ public class DisplayMessageActivity extends AppCompatActivity {
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         TextView textView = new TextView(this);
         textView.setTextSize(40);
-        textView.setText(message);
-
+        textView.setText(APICall());
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
         layout.addView(textView);
     }
 
-    public HttpResponse<JsonNode> APICall()
-    {
-        HttpResponse<JsonNode> response = null;
+
+    public static String APICall() {
+        String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/9266/information?amount=100&unit=gram";
+        String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
+
+        // the request
         try {
-            response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
-                    .header("X-Mashape-Key", "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY")
+            HttpResponse<String> response = Unirest.get(URL)
+                    .header("X-Mashape-Key", APIKey)
                     .header("Accept", "application/json")
-                    .asJson();
+                    .asString();
+            return "Empty";
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-
-        return response;
+        return "empty";
     }
 }
