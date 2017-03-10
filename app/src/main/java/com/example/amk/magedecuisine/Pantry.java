@@ -26,6 +26,7 @@ public class Pantry extends ListActivity {
         setContentView(R.layout.activity_pantry);
         final EditText entItem = (EditText) findViewById(R.id.entItem);
         final Button addBtn = (Button) findViewById(R.id.addBtn);
+        final Button rmvBtn = (Button) findViewById(R.id.rmvBtn);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listItems);
         setListAdapter(adapter);
 
@@ -38,6 +39,15 @@ public class Pantry extends ListActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        rmvBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+            public void onClick(View v) {
+               adapter.clear();
+           }
+        });
+
+
     }
 
 
