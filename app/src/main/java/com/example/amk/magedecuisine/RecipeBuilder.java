@@ -13,43 +13,39 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 
-public class DisplayMessageActivity extends AppCompatActivity {
+public class RecipeBuilder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_message);
-
-//        Intent intent = getIntent();
-//        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-//        TextView textView = new TextView(this);
-//        textView.setTextSize(40);
-//        textView.setText("NA");
-//        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
-//        layout.addView(textView);
+        setContentView(R.layout.activity_recipe_builder);
     }
 
     public void sendMessage(View view) {
 
         EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
+        String ingredients = editText.getText().toString();
+        ingredients = ingredients.replaceAll("\\s+", "");
+        ingredients = ingredients.replaceAll(",", "%2C");
 
         TextView txtView = (TextView) findViewById(R.id.textView1);
-        txtView.setText(message);
+        txtView.setText(ingredients);
 
-        new CallMashapeAsync().execute(message);
+        new CallMashapeAsync().execute(ingredients);
     }
 
     private class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
 
-        protected HttpResponse<JsonNode> doInBackground(String... msg) {
+        protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + ing[0] + "&limitLicense=false&number=5&ranking=1";
+            String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {
-                request = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/quickAnswer?q=How+much+vitamin+c+is+in+2+apples%3F")
-                   .header("X-Mashape-Key", "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY")
-                    .header("Accept", "application/json")
-                    .asJson();
+                request = Unirest.get(URL)
+                        .header("X-Mashape-Key", APIKey)
+                        .header("Accept", "application/json")
+                        .asJson();
             } catch (UnirestException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

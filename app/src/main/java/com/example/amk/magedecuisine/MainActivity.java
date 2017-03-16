@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** CALLED WHEN USER CLICKS RECIPE BUILDER BUTTON **/
-    public void doSomething(View view)
+    public void recipeAction(View view)
     {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, RecipeBuilder.class);
         Button recipeButton = (Button) findViewById(R.id.button16);
-        String message = "Senior Project";
-        intent.putExtra(EXTRA_MESSAGE, message);
+        //String message = "Senior Project";
+        //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 

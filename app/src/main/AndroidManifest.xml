@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayMessageActivity" />
+        <activity android:name=".RecipeBuilder" />
         <activity android:name=".Pantry" />
         <activity android:name=".Bookmarks"></activity>
     </application>
