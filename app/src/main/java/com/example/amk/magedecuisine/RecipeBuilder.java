@@ -15,6 +15,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class RecipeBuilder extends AppCompatActivity {
 
+    String answer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +59,14 @@ public class RecipeBuilder extends AppCompatActivity {
         }
 
         protected void onPostExecute(HttpResponse<JsonNode> response) {
-            String answer = response.getBody().toString();
+            answer = response.getBody().toString();
             TextView txtView = (TextView) findViewById(R.id.textView1);
             txtView.setText(answer);
         }
+    }
+
+    public void parseJSON(View view)
+    {
+        
     }
 }

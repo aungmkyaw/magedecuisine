@@ -19,8 +19,8 @@
         </activity>
         <activity android:name=".RecipeBuilder" />
         <activity android:name=".Pantry" />
-        <activity android:name=".Bookmarks"></activity>
+        <activity android:name=".Bookmarks" />
+        <activity android:name=".DisplayListView"></activity>
     </application>
-
 
 </manifest>
