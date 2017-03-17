@@ -1,11 +1,13 @@
 package com.example.amk.magedecuisine;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -67,6 +69,15 @@ public class RecipeBuilder extends AppCompatActivity {
 
     public void parseJSON(View view)
     {
-        
+        if (answer == null)
+        {
+            Toast.makeText(getApplicationContext(), "Renter JSON data", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Intent intent = new Intent(this, DisplayListView.class);
+            intent.putExtra("json_data", answer);
+            startActivity(intent);
+        }
     }
 }
