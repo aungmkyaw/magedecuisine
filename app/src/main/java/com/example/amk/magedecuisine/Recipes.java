@@ -5,20 +5,21 @@ package com.example.amk.magedecuisine;
  */
 
 public class Recipes {
-    String id, title, likes;
+    String title;
+    int id, likes;
 
-    Recipes(String id, String title, String likes)
+    Recipes(int id, String title, int likes)
     {
         this.setId(id);
         this.setTitle(title);
         this.setLikes(likes);
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,11 +31,11 @@ public class Recipes {
         this.title = title;
     }
 
-    public String getLikes() {
+    public int getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(int likes) {
         this.likes = likes;
     }
 }

@@ -28,8 +28,8 @@ public class RecipeBuilder extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String ingredients = editText.getText().toString();
-        ingredients = ingredients.replaceAll("\\s+", "");
-        ingredients = ingredients.replaceAll(",", "%2C");
+        ingredients = ingredients.replaceAll("\\s+", ""); //Remove ALL spaces in String
+        ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
 
         TextView txtView = (TextView) findViewById(R.id.textView1);
         txtView.setText(ingredients);
@@ -71,7 +71,7 @@ public class RecipeBuilder extends AppCompatActivity {
     {
         if (answer == null)
         {
-            Toast.makeText(getApplicationContext(), "Renter JSON data", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
         }
         else
         {

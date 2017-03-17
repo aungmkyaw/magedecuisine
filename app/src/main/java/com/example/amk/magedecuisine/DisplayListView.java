@@ -20,6 +20,7 @@ public class DisplayListView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_listview_layout);
+
         listView = (ListView) findViewById(R.id.listview);
         recipesAdapter = new RecipesAdapter(this, R.layout.row_layout);
         listView.setAdapter(recipesAdapter);
@@ -28,14 +29,15 @@ public class DisplayListView extends AppCompatActivity {
             jsonObject = new JSONObject(json_string);
             jsonArray = jsonObject.getJSONArray("server_response");
             int count = 0;
-            String id, title, likes;
+            String title;
+            int id, likes;
 
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                id = JO.getString("id");
+                id = JO.getInt("id");
                 title = JO.getString("title");
-                likes = JO.getString("likes");
+                likes = JO.getInt("likes");
 
                 Recipes recipe = new Recipes(id, title, likes);
                 recipesAdapter.add(recipe);
