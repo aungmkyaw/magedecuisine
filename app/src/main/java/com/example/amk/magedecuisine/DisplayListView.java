@@ -21,8 +21,8 @@ public class DisplayListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_listview_layout);
         listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(recipesAdapter);
         recipesAdapter = new RecipesAdapter(this, R.layout.row_layout);
+        listView.setAdapter(recipesAdapter);
         json_string = getIntent().getExtras().getString("json_data");
         try {
             jsonObject = new JSONObject(json_string);
