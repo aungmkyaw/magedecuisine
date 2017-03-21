@@ -18,6 +18,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class RecipeBuilder extends AppCompatActivity {
 
     String answer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class RecipeBuilder extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String ingredients = editText.getText().toString();
-        ingredients = ingredients.replaceAll("\\s+", ""); //Remove ALL spaces in String
+        ingredients = ingredients.replaceAll("\\s+", "+"); //Remove ALL spaces in String
         ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
 
         TextView txtView = (TextView) findViewById(R.id.textView1);
@@ -41,7 +42,7 @@ public class RecipeBuilder extends AppCompatActivity {
 
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + ing[0] + "&limitLicense=false&number=1&ranking=1";
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + ing[0] + "&limitLicense=false&number=2&ranking=1";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {
@@ -57,9 +58,11 @@ public class RecipeBuilder extends AppCompatActivity {
             return request;
         }
 
+        @Override
         protected void onProgressUpdate(Integer...integers) {
         }
 
+        @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             answer = response.getBody().toString();
             TextView txtView = (TextView) findViewById(R.id.textView1);

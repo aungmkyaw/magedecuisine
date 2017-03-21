@@ -1,7 +1,7 @@
 package com.example.amk.magedecuisine;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -26,8 +26,9 @@ public class DisplayListView extends AppCompatActivity {
         listView.setAdapter(recipesAdapter);
         json_string = getIntent().getExtras().getString("json_data");
         try {
-            jsonObject = new JSONObject(json_string);
-            jsonArray = jsonObject.getJSONArray("server_response");
+            //jsonObject = new JSONObject(json_string);
+            //jsonArray = jsonObject.getJSONArray("");
+            jsonArray = new JSONArray(json_string);
             int count = 0;
             String title;
             int id, likes;
@@ -40,9 +41,11 @@ public class DisplayListView extends AppCompatActivity {
                 likes = JO.getInt("likes");
 
                 Recipes recipe = new Recipes(id, title, likes);
-                recipesAdapter.add(recipe);
+
+                //recipesAdapter.add(recipe);
                 count++;
             }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
