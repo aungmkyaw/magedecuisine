@@ -42,7 +42,7 @@ public class RecipeBuilder extends AppCompatActivity {
 
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + ing[0] + "&limitLicense=false&number=2&ranking=1";
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + ing[0] + "&limitLicense=false&number=10&ranking=1";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {

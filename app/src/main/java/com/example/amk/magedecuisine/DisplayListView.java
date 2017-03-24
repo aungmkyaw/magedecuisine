@@ -36,11 +36,11 @@ public class DisplayListView extends AppCompatActivity {
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                id = JO.getInt("id");
+                //id = JO.getInt("id");
                 title = JO.getString("title");
                 likes = JO.getInt("likes");
 
-                Recipes recipe = new Recipes(id, title, likes);
+                Recipes recipe = new Recipes(title, likes);
 
                 recipesAdapter.add(recipe);
                 count++;

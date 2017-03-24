@@ -49,7 +49,7 @@ public class RecipesAdapter extends ArrayAdapter{
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             recipeHolder = new RecipeHolder();
-            recipeHolder.tx_id = (TextView) row.findViewById(R.id.tx_id);
+           // recipeHolder.tx_id = (TextView) row.findViewById(R.id.tx_id);
             recipeHolder.tx_title = (TextView) row.findViewById(R.id.tx_title);
             recipeHolder.tx_likes = (TextView) row.findViewById(R.id.tx_likes);
             row.setTag(recipeHolder);
@@ -61,7 +61,7 @@ public class RecipesAdapter extends ArrayAdapter{
         }
 
         Recipes recipes = (Recipes) this.getItem(position);
-        recipeHolder.tx_id.setText(Integer.toString(recipes.getId()));
+        //recipeHolder.tx_id.setText(Integer.toString(recipes.getId()));
         recipeHolder.tx_title.setText(recipes.getTitle());
         recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
 
