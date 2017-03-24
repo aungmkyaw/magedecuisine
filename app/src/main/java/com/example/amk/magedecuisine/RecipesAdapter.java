@@ -8,14 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sukhdipsingh on 3/16/17.
  */
 
 public class RecipesAdapter extends ArrayAdapter{
-    List list = new ArrayList();
+    ArrayList<Recipes> list = new ArrayList<Recipes>();
 
     public RecipesAdapter(Context context, int resource) {
         super(context, resource);
@@ -62,9 +61,9 @@ public class RecipesAdapter extends ArrayAdapter{
         }
 
         Recipes recipes = (Recipes) this.getItem(position);
-        recipeHolder.tx_id.setText(recipes.getId());
+        recipeHolder.tx_id.setText(Integer.toString(recipes.getId()));
         recipeHolder.tx_title.setText(recipes.getTitle());
-        recipeHolder.tx_likes.setText(recipes.getLikes());
+        recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
 
         return row;
     }

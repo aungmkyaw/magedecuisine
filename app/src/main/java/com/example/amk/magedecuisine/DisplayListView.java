@@ -42,11 +42,9 @@ public class DisplayListView extends AppCompatActivity {
 
                 Recipes recipe = new Recipes(id, title, likes);
 
-                //recipesAdapter.add(recipe);
+                recipesAdapter.add(recipe);
                 count++;
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
