@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -44,14 +47,15 @@ public class RecipesAdapter extends ArrayAdapter{
         View row = convertView;
         RecipeHolder recipeHolder;
 
+
         if (row == null)
         {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             recipeHolder = new RecipeHolder();
-           // recipeHolder.tx_id = (TextView) row.findViewById(R.id.tx_id);
             recipeHolder.tx_title = (TextView) row.findViewById(R.id.tx_title);
             recipeHolder.tx_likes = (TextView) row.findViewById(R.id.tx_likes);
+            recipeHolder.tx_image = (ImageView) row.findViewById(R.id.tx_image);
             row.setTag(recipeHolder);
         }
 
@@ -61,16 +65,18 @@ public class RecipesAdapter extends ArrayAdapter{
         }
 
         Recipes recipes = (Recipes) this.getItem(position);
-        //recipeHolder.tx_id.setText(Integer.toString(recipes.getId()));
+        Picasso.with(this.getContext()).load(recipes.getImage()).into(recipeHolder.tx_image);
         recipeHolder.tx_title.setText(recipes.getTitle());
         recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
+        //recipeHolder.tx_image.setImageDrawable(recipes.getImage());
 
         return row;
     }
 
     static class RecipeHolder
     {
-        TextView tx_id, tx_title, tx_likes;
+        TextView tx_title, tx_likes;
+        ImageView tx_image;
     }
 
 }

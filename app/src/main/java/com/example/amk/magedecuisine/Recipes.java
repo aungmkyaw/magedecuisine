@@ -6,28 +6,22 @@ package com.example.amk.magedecuisine;
 
 public class Recipes {
     String title;
-    int id, likes;
-    Recipes(String title, int likes)
+    String image;
+    int likes;
+
+    Recipes(String title, int likes, String image)
     {
         this.setTitle(title);
         this.setLikes(likes);
+        this.setImage(image);
     }
 
-//    Recipes(int id, String title, int likes)
-//    {
-//        this.setId(id);
-//        this.setTitle(title);
-//        this.setLikes(likes);
-//    }
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
     public String getTitle() {
         return title;
     }
