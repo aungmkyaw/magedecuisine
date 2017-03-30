@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -29,13 +28,18 @@ public class RecipeBuilder extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String ingredients = editText.getText().toString();
-        ingredients = ingredients.replaceAll("\\s+", "+"); //Remove ALL spaces in String
-        ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
 
-        TextView txtView = (TextView) findViewById(R.id.textView1);
-        txtView.setText(ingredients);
+        if (ingredients.matches(""))
+        {
+            Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            ingredients = ingredients.replaceAll("\\s+", "+"); //Remove ALL spaces in String
+            ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
 
-        new CallMashapeAsync().execute(ingredients);
+            new CallMashapeAsync().execute(ingredients);
+        }
     }
 
     private class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
@@ -65,20 +69,8 @@ public class RecipeBuilder extends AppCompatActivity {
         @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             answer = response.getBody().toString();
-            TextView txtView = (TextView) findViewById(R.id.textView1);
-            txtView.setText(answer);
-        }
-    }
 
-    public void parseJSON(View view)
-    {
-        if (answer == null)
-        {
-            Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            Intent intent = new Intent(this, DisplayListView.class);
+            Intent intent = new Intent(getApplicationContext(), DisplayListView.class);
             intent.putExtra("json_data", answer);
             startActivity(intent);
         }

@@ -37,20 +37,6 @@
             android:text="Generate" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Parse JSON"
-        android:onClick="parseJSON"/>
-
 </LinearLayout>
 
 </ScrollView>

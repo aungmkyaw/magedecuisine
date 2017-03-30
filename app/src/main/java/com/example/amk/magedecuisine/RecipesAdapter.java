@@ -47,7 +47,6 @@ public class RecipesAdapter extends ArrayAdapter{
         View row = convertView;
         RecipeHolder recipeHolder;
 
-
         if (row == null)
         {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
