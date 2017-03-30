@@ -5,17 +5,24 @@ package com.example.amk.magedecuisine;
  */
 
 public class Recipes {
-    String title;
-    String image;
-    int likes;
+    String title, image;
+    int likes, ingredientsLeft;
 
-    Recipes(String title, int likes, String image)
+    Recipes(String title, int likes, String image, int ingredientsLeft)
     {
         this.setTitle(title);
         this.setLikes(likes);
         this.setImage(image);
+        this.setIngredientsLeft(ingredientsLeft);
     }
 
+    public int getIngredientsLeft() {
+        return ingredientsLeft;
+    }
+
+    public void setIngredientsLeft(int ingredientsLeft) {
+        this.ingredientsLeft = ingredientsLeft;
+    }
     public String getImage() {
         return image;
     }

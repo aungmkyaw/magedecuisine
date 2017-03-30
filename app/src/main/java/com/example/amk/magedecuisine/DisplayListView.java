@@ -31,7 +31,7 @@ public class DisplayListView extends AppCompatActivity {
             jsonArray = new JSONArray(json_string);
             int count = 0;
             String title, image;
-            int likes;
+            int likes, ingredientsLeft;
 
             while(count < jsonArray.length())
             {
@@ -39,8 +39,9 @@ public class DisplayListView extends AppCompatActivity {
                 title = JO.getString("title");
                 likes = JO.getInt("likes");
                 image = JO.getString("image");
+                ingredientsLeft = JO.getInt("missedIngredientCount");
 
-                Recipes recipe = new Recipes(title, likes, image);
+                Recipes recipe = new Recipes(title, likes, image, ingredientsLeft);
 
                 recipesAdapter.add(recipe);
                 count++;

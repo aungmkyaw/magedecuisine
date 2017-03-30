@@ -29,6 +29,16 @@
         android:layout_height="25dp"
         android:gravity="center"
         android:text="Likes"
+        android:layout_above="@+id/tx_ingredientsLeft"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tx_ingredientsLeft"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:text="Ingredients Needed"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
