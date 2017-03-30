@@ -21,6 +21,8 @@
         <activity android:name=".Pantry" />
         <activity android:name=".Bookmarks" />
         <activity android:name=".DisplayListView" />
+        <activity android:name=".RecipesDetailBuilder" />
+        <activity android:name=".DisplayDetail"></activity>
     </application>
 
 </manifest>
