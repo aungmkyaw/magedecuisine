@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "com.example.amk.magedecuisine.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, RecipeBuilder.class);
         Button recipeButton = (Button) findViewById(R.id.button16);
-        //String message = "Senior Project";
-        //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
