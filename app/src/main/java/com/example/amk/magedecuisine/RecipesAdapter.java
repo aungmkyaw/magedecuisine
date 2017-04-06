@@ -72,7 +72,7 @@ public class RecipesAdapter extends ArrayAdapter{
 
         return row;
     }
-
+    
     static class RecipeHolder
     {
         TextView tx_title, tx_likes, tx_ingredientsLeft;

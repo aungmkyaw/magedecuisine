@@ -15,11 +15,9 @@ public class Recipes {
         this.setImage(image);
         this.setIngredientsLeft(ingredientsLeft);
     }
-
     public int getIngredientsLeft() {
         return ingredientsLeft;
     }
-
     public void setIngredientsLeft(int ingredientsLeft) {
         this.ingredientsLeft = ingredientsLeft;
     }
@@ -32,15 +30,12 @@ public class Recipes {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public int getLikes() {
         return likes;
     }
-
     public void setLikes(int likes) {
         this.likes = likes;
     }
