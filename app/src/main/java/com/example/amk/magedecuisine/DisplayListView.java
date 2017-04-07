@@ -1,11 +1,11 @@
 package com.example.amk.magedecuisine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +17,9 @@ public class DisplayListView extends AppCompatActivity{
     JSONArray jsonArray;
     RecipesAdapter recipesAdapter;
     ListView listView;
+    int count = 0;
+    String title, image;
+    int id, likes, ingredientsLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,6 @@ public class DisplayListView extends AppCompatActivity{
         json_string = getIntent().getExtras().getString("json_data");
         try {
             jsonArray = new JSONArray(json_string);
-            int count = 0;
-            String title, image;
-            int id, likes, ingredientsLeft;
-
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
@@ -51,8 +50,12 @@ public class DisplayListView extends AppCompatActivity{
             AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> listView, View v, int position, long id)
                 {
-                    Toast.makeText(getBaseContext(), listView.getItemAtPosition(position) + " is selected", Toast.LENGTH_LONG).show();
-
+                    Intent intent = new Intent(getApplicationContext(), DisplayDetail.class);
+                   // intent.putExtra("idDT", id);
+                    intent.putExtra("titleDT", title);
+                    intent.putExtra("likesDT", likes);
+                    intent.putExtra("imageDT", image);
+                    startActivity(intent);
                 }
             };
             listView.setOnItemClickListener(itemClickListener);
