@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DisplayDetail extends AppCompatActivity {
@@ -19,40 +20,34 @@ public class DisplayDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
-
         String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
         int likes = getIntent().getExtras().getInt("likesDT");
+        String description;
+
         listView = (ListView) findViewById(R.id.listviewDT);
         recipesDetailAdapter = new RecipesDetailsAdapter(this, R.layout.activity_recipes_detail_builder);
         listView.setAdapter(recipesDetailAdapter);
-        json_string = getIntent().getExtras().getString("json_data");
-
-        RecipeDetails recipeDetail = new RecipeDetails(title, likes, image);
-
-        recipesDetailAdapter.add(recipeDetail);
-//        try {
-//            jsonObject = new JSONObject(json_string);
-//            jsonArray = jsonObject.getJSONArray("");
-//            int count = 0;
-
-            //String title, image;
-            //int likes, ingredientsLeft;
+        json_string = getIntent().getExtras().getString("json_dataDT");
+        try {
+            jsonObject = new JSONObject(json_string);
+            //jsonArray = jsonObject.getJSONArray("");
+         //   jsonObject = jsonObject.getJSONObject("");
+            //jsonArray = new JSONArray(json_string);
+           // int count = 0;
 
 //            while(count < jsonArray.length())
 //            {
-//                JSONObject JO = jsonArray.getJSONObject(count);
-//                title = JO.getString("title");
-//                likes = JO.getInt("likes");
-//                image = JO.getString("image");
-//                ingredientsLeft = JO.getInt("missedIngredientCount");
+                //JSONObject JO = jsonArray.getJSONObject(count);
+               // description = JO.getString("summary");
+                description = jsonObject.getString("summary");
 
-                //RecipesDetails recipeDetail = new RecipesDetails(title, likes, image, ingredientsLeft);
+                RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, description);
 
-                //recipesAdapter.add(recipe);
-//                count++;
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+                recipesDetailAdapter.add(recipeDetail);
+                //count++;
+         //   }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

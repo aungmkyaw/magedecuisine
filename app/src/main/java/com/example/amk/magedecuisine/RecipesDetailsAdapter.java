@@ -55,6 +55,7 @@ public class RecipesDetailsAdapter extends ArrayAdapter {
             recipeDetailsHolder.tx_title = (TextView) row.findViewById(R.id.TitleDT);
             recipeDetailsHolder.tx_likes = (TextView) row.findViewById(R.id.LikesDT);
             recipeDetailsHolder.tx_image = (ImageView) row.findViewById(R.id.imageDT);
+            recipeDetailsHolder.tx_description = (TextView) row.findViewById(R.id.DescriptionDT);
             row.setTag(recipeDetailsHolder);
         }
         else
@@ -66,13 +67,14 @@ public class RecipesDetailsAdapter extends ArrayAdapter {
         Picasso.with(this.getContext()).load(recipes.getImage()).resize(100,50).into(recipeDetailsHolder.tx_image);
         recipeDetailsHolder.tx_title.setText(recipes.getTitle());
         recipeDetailsHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
+        recipeDetailsHolder.tx_description.setText(recipes.getDescription());
 
         return row;
     }
 
     static class RecipeDetailsHolder
     {
-        TextView tx_title, tx_likes;
+        TextView tx_title, tx_likes, tx_description;
         ImageView tx_image;
     }
 

@@ -8,11 +8,12 @@ public class RecipeDetails {
     String title, image, description;
     int likes;
 
-    RecipeDetails(String title, int likes, String image)
+    RecipeDetails(String title, int likes, String image, String description)
     {
         this.setTitle(title);
         this.setLikes(likes);
         this.setImage(image);
+        this.setDescription(description);
     }
 
     public String getDescription() {

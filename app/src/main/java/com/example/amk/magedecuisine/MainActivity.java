@@ -37,5 +37,4 @@ public class MainActivity extends AppCompatActivity {
         Button BookmarksButton = (Button) findViewById(R.id.button15);
         startActivity(intent);
     }
-
 }

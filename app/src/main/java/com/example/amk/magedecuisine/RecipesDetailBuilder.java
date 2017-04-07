@@ -18,13 +18,15 @@ public class RecipesDetailBuilder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_detail_builder);
+        new CallMashapeAsync().execute();
     }
 
     private class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
 
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/479101/information?includeNutrition=true";
+            int recipeID = getIntent().getExtras().getInt("idDT");
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/summary";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {
@@ -46,10 +48,16 @@ public class RecipesDetailBuilder extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
+            String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
+            int likes = getIntent().getExtras().getInt("likesDT");
+
             answer = response.getBody().toString();
 
             Intent intent = new Intent(getApplicationContext(), DisplayDetail.class);
-            intent.putExtra("json_data", answer);
+            intent.putExtra("json_dataDT", answer);
+            intent.putExtra("titleDT", title);
+            intent.putExtra("likesDT", likes);
+            intent.putExtra("imageDT", image);
             startActivity(intent);
         }
     }

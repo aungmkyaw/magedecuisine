@@ -13,13 +13,11 @@ import org.json.JSONObject;
 
 public class DisplayListView extends AppCompatActivity{
 
-    String json_string;
     JSONArray jsonArray;
     RecipesAdapter recipesAdapter;
     ListView listView;
-    int count = 0;
-    String title, image;
-    int id, likes, ingredientsLeft;
+    String title, image, json_string;
+    int recipeID, likes, ingredientsLeft, count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,7 @@ public class DisplayListView extends AppCompatActivity{
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                id = JO.getInt("id");
+                recipeID = JO.getInt("id");
                 title = JO.getString("title");
                 likes = JO.getInt("likes");
                 image = JO.getString("image");
@@ -50,8 +48,8 @@ public class DisplayListView extends AppCompatActivity{
             AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> listView, View v, int position, long id)
                 {
-                    Intent intent = new Intent(getApplicationContext(), DisplayDetail.class);
-                   // intent.putExtra("idDT", id);
+                    Intent intent = new Intent(getApplicationContext(), RecipesDetailBuilder.class);
+                    intent.putExtra("idDT", recipeID);
                     intent.putExtra("titleDT", title);
                     intent.putExtra("likesDT", likes);
                     intent.putExtra("imageDT", image);
