@@ -36,7 +36,7 @@ public class RecipesDetailsAdapter extends ArrayAdapter {
     }
 
     @Override
-    public Object getItem(int position)
+    public RecipeDetails getItem(int position)
     {
         return list.get(position);
     }
