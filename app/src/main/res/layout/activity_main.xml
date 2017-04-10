@@ -14,41 +14,35 @@
     <Button
         android:text="@string/pantry"
         android:onClick="pantryAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:id="@+id/button14"
-        android:background="@color/colorButton1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/ovalbutton1"
+        android:layout_above="@+id/button15"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="@string/bookmarks"
         android:onClick="BookmarksAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button14"
-        android:layout_alignRight="@+id/button14"
-        android:layout_alignEnd="@+id/button14"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:id="@+id/button15"
-        android:background="@color/colorButton2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/button16"
+        android:background="@drawable/ovalbutton2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp" />
 
     <Button
         android:text="@string/recipeBuilder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button15"
-        android:layout_alignLeft="@+id/button15"
-        android:layout_alignStart="@+id/button15"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:id="@+id/button16"
-        android:background="@color/colorButton3"
         android:onClick="recipeAction"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@drawable/ovalbutton3"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
