@@ -39,7 +39,7 @@ public class DisplayListView extends AppCompatActivity{
                 image = JO.getString("image");
                 ingredientsLeft = JO.getInt("missedIngredientCount");
 
-                Recipes recipe = new Recipes(title, likes, image, ingredientsLeft);
+                Recipes recipe = new Recipes(recipeID, title, likes, image, ingredientsLeft);
 
                 recipesAdapter.add(recipe);
                 count++;
@@ -49,10 +49,11 @@ public class DisplayListView extends AppCompatActivity{
                 public void onItemClick(AdapterView<?> listView, View v, int position, long id)
                 {
                     Intent intent = new Intent(getApplicationContext(), RecipesDetailBuilder.class);
-                    intent.putExtra("idDT", recipeID);
-                    intent.putExtra("titleDT", title);
-                    intent.putExtra("likesDT", likes);
-                    intent.putExtra("imageDT", image);
+                    Recipes obj = recipesAdapter.getItem(position);
+                    intent.putExtra("idDT", obj.getID());
+                    intent.putExtra("titleDT", obj.getTitle());
+                    intent.putExtra("likesDT", obj.getLikes());
+                    intent.putExtra("imageDT", obj.getImage());
                     startActivity(intent);
                 }
             };
