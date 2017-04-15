@@ -16,7 +16,7 @@ public class DisplayDetail extends AppCompatActivity {
         setContentView(R.layout.activity_display_detail);
 
         String json_string, ingredientAmount, ingredientImage;
-        int cookTime, count = 0;
+        int cookTime, ingredientCount = 0, instructionsCount = 0;
         JSONObject jsonObject;
         JSONArray jsonArray;
         RecipesDetailsAdapter recipesDetailAdapter;
@@ -37,16 +37,25 @@ public class DisplayDetail extends AppCompatActivity {
 
             jsonArray = jsonObject.getJSONArray("extendedIngredients");
 
-            while(count < jsonArray.length())
+            while(ingredientCount < jsonArray.length())
             {
-                JSONObject JO = jsonArray.getJSONObject(count);
+                JSONObject JO = jsonArray.getJSONObject(ingredientCount);
                 ingredientAmount = JO.getString("originalString");
                 ingredientImage = JO.getString("image");
 
                 IngredientList ingList = new IngredientList(ingredientAmount, ingredientImage);
                 ingredientsAdapter.add(ingList);
-                count++;
+                ingredientCount++;
             }
+
+
+
+//            while(instructionsCount < jsonArray.length())
+//            {
+//                JSONObject JO = jsonArray.getJSONObject(instructionsCount);
+//
+//
+//            }
 
            // RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime, ingList);
             //recipesDetailAdapter.add(recipeDetail);
