@@ -15,8 +15,8 @@ public class DisplayDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
 
-        String json_string, ingredientAmount, ingredientImage;
-        int cookTime, ingredientCount = 0, instructionsCount = 0;
+        String json_string, ingredientAmount, ingredientImage, instructStep;
+        int cookTime, instructNum, ingredientCount = 0, instructionsCount = 0;
         JSONObject jsonObject;
         JSONArray jsonArray;
         RecipesDetailsAdapter recipesDetailAdapter;
@@ -48,14 +48,27 @@ public class DisplayDetail extends AppCompatActivity {
                 ingredientCount++;
             }
 
-
-
-//            while(instructionsCount < jsonArray.length())
-//            {
-//                JSONObject JO = jsonArray.getJSONObject(instructionsCount);
-//
-//
-//            }
+            JSONObject mainObj = new JSONObject(json_string);
+            if(mainObj != null){
+                JSONArray list = mainObj.getJSONArray("analyzedInstructions");
+                if(list != null){
+                    for(int i = 0; i < list.length();i++){
+                        JSONObject elem = list.getJSONObject(i);
+                        if(elem != null){
+                            JSONArray steps = elem.getJSONArray("steps");
+                            if(steps != null){
+                                for(int j = 0; j < steps.length();j++){
+                                    JSONObject innerElem = steps.getJSONObject(j);
+                                    if(innerElem != null){
+                                        instructNum = innerElem.getInt("number");
+                                        instructStep = innerElem.getString("step");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
            // RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime, ingList);
             //recipesDetailAdapter.add(recipeDetail);
