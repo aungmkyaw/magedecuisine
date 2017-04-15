@@ -15,34 +15,37 @@ public class DisplayDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
 
-        String json_string, ingredientAmount, ingredientImage, instructStep;
-        int cookTime, instructNum, ingredientCount = 0, instructionsCount = 0;
-
-        String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
-        int likes = getIntent().getExtras().getInt("likesDT");
-
         //TO POPULATE BASIC RECIPE DETAIL DATA
         ListView listView = (ListView) findViewById(R.id.listviewDT);
         RecipesDetailsAdapter recipesDetailAdapter = new RecipesDetailsAdapter(this, R.layout.activity_recipes_detail_builder);
         listView.setAdapter(recipesDetailAdapter);
 
         //TO POPULATE RECIPE INGREDIENTS DATA
+        ListView ingredientsList = (ListView) findViewById(R.id.listviewIngredients);
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
+        ingredientsList.setAdapter(ingredientsAdapter);
 
         //TO POPULATE RECIPE INSTRUCTIONS DATA
         InstructionsAdapter instructionsAdapter = new InstructionsAdapter(this, R.layout.instructions_layout);
 
 
-        json_string = getIntent().getExtras().getString("json_dataDT");
+        String json_string = getIntent().getExtras().getString("json_dataDT");
         try {
             JSONObject jsonObject = new JSONObject(json_string);
 
             //PARSING BASIC RECIPE DETAIL DATA
-            cookTime = jsonObject.getInt("readyInMinutes");
+            String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
+            int likes = getIntent().getExtras().getInt("likesDT");
+            int cookTime = jsonObject.getInt("readyInMinutes");
+
             RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime);
             recipesDetailAdapter.add(recipeDetail);
 
+
             //PARSING INGREDIENTS NEEDED FOR RECIPE
+            String ingredientAmount, ingredientImage;
+            int ingredientCount = 0;
+
             JSONArray jsonArray = jsonObject.getJSONArray("extendedIngredients");
             while(ingredientCount < jsonArray.length())
             {
@@ -55,7 +58,11 @@ public class DisplayDetail extends AppCompatActivity {
                 ingredientCount++;
             }
 
+
             //PARSING INSTRUCTIONS NEEDED FOR RECIPE
+            int instructNum;
+            String instructStep;
+
             JSONObject mainObj = new JSONObject(json_string);
             if(mainObj != null){
                 JSONArray list = mainObj.getJSONArray("analyzedInstructions");
