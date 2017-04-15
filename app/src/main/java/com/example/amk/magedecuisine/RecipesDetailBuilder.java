@@ -26,7 +26,7 @@ public class RecipesDetailBuilder extends AppCompatActivity {
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
             int recipeID = getIntent().getExtras().getInt("idDT");
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/summary";
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {

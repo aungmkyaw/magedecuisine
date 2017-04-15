@@ -13,16 +13,16 @@ import org.json.JSONObject;
 
 public class DisplayListView extends AppCompatActivity{
 
-    JSONArray jsonArray;
-    RecipesAdapter recipesAdapter;
-    ListView listView;
-    String title, image, json_string;
-    int recipeID, likes, ingredientsLeft, count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_listview_layout);
+
+        JSONArray jsonArray;
+        final RecipesAdapter recipesAdapter;
+        ListView listView;
+        String title, image, json_string;
+        int recipeID, likes, ingredientsLeft, count = 0;
 
         listView = (ListView) findViewById(R.id.listview);
         recipesAdapter = new RecipesAdapter(this, R.layout.row_layout);

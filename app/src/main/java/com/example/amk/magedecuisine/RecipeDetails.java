@@ -1,21 +1,43 @@
 package com.example.amk.magedecuisine;
 
+import java.util.ArrayList;
+
 /**
  * Created by sukhdipsingh on 3/29/17.
  */
 
 public class RecipeDetails {
     String title, image, description;
-    int likes;
+    int likes, cookTime;
+    ArrayList<String> ingredientList, recipeInstructions;
 
-    RecipeDetails(String title, int likes, String image, String description)
+    RecipeDetails(String title, int likes, String image, int cookTime, ArrayList<String> ingList)
     {
         this.setTitle(title);
         this.setLikes(likes);
         this.setImage(image);
-        this.setDescription(description);
+        this.setCookTime(cookTime);
+        this.setIngredientList(ingList);
     }
 
+    public ArrayList<String> getIngredientList() {
+        return ingredientList;
+    }
+    public void setIngredientList(ArrayList<String> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
+    public ArrayList<String> getRecipeInstructions() {
+        return recipeInstructions;
+    }
+    public void setRecipeInstructions(ArrayList<String> recipeInstructions) {
+        this.recipeInstructions = recipeInstructions;
+    }
+    public int getCookTime() {
+        return cookTime;
+    }
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
+    }
     public String getDescription() {
         return description;
     }

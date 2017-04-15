@@ -8,21 +8,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DisplayDetail extends AppCompatActivity {
+import java.util.ArrayList;
 
-    String json_string;
-    JSONObject jsonObject;
-    JSONArray jsonArray;
-    RecipesDetailsAdapter recipesDetailAdapter;
-    ListView listView;
+public class DisplayDetail extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
+
+        String json_string;
+        JSONObject jsonObject;
+        JSONArray jsonArray;
+        RecipesDetailsAdapter recipesDetailAdapter;
+        ListView listView;
+        int cookTime;
+        ArrayList<String> ingredientList = new ArrayList<String>();
+
         String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
         int likes = getIntent().getExtras().getInt("likesDT");
-        String description;
 
         listView = (ListView) findViewById(R.id.listviewDT);
         recipesDetailAdapter = new RecipesDetailsAdapter(this, R.layout.activity_recipes_detail_builder);
@@ -30,22 +34,24 @@ public class DisplayDetail extends AppCompatActivity {
         json_string = getIntent().getExtras().getString("json_dataDT");
         try {
             jsonObject = new JSONObject(json_string);
-            //jsonArray = jsonObject.getJSONArray("");
-         //   jsonObject = jsonObject.getJSONObject("");
-            //jsonArray = new JSONArray(json_string);
-           // int count = 0;
+            cookTime = jsonObject.getInt("readyInMinutes");
 
-//            while(count < jsonArray.length())
-//            {
-                //JSONObject JO = jsonArray.getJSONObject(count);
-               // description = JO.getString("summary");
-                description = jsonObject.getString("summary");
+            jsonArray = jsonObject.getJSONArray("extendedIngredients");
+            //jsonArray = new JSONArray("ingredients");
+            int count = 0;
 
-                RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, description);
+            while(count < jsonArray.length())
+            {
+                JSONObject JO = jsonArray.getJSONObject(count);
+                ingredientList.add(count, JO.getString("name"));
 
-                recipesDetailAdapter.add(recipeDetail);
-                //count++;
-         //   }
+                count++;
+            }
+
+            RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime, ingredientList);
+
+            recipesDetailAdapter.add(recipeDetail);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
