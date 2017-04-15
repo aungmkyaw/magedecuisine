@@ -1,7 +1,5 @@
 package com.example.amk.magedecuisine;
 
-import java.util.ArrayList;
-
 /**
  * Created by sukhdipsingh on 3/29/17.
  */
@@ -9,28 +7,13 @@ import java.util.ArrayList;
 public class RecipeDetails {
     String title, image, description;
     int likes, cookTime;
-    IngredientList ingList;
-    ArrayList<String> recipeInstructions;
 
-    RecipeDetails(String title, int likes, String image, int cookTime, IngredientList ingList)
+    RecipeDetails(String title, int likes, String image, int cookTime)
     {
         this.setTitle(title);
         this.setLikes(likes);
         this.setImage(image);
         this.setCookTime(cookTime);
-        this.setIngList(ingList);
-    }
-    public IngredientList getIngList() {
-        return ingList;
-    }
-    public void setIngList(IngredientList ingList) {
-        this.ingList = ingList;
-    }
-    public ArrayList<String> getRecipeInstructions() {
-        return recipeInstructions;
-    }
-    public void setRecipeInstructions(ArrayList<String> recipeInstructions) {
-        this.recipeInstructions = recipeInstructions;
     }
     public int getCookTime() {
         return cookTime;
