@@ -8,8 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class DisplayDetail extends AppCompatActivity {
 
     @Override
@@ -17,19 +15,20 @@ public class DisplayDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
 
-        String json_string;
+        String json_string, ingredientAmount, ingredientImage;
+        int cookTime, count = 0;
         JSONObject jsonObject;
         JSONArray jsonArray;
         RecipesDetailsAdapter recipesDetailAdapter;
+        IngredientsAdapter ingredientsAdapter;
         ListView listView;
-        int cookTime;
-        ArrayList<String> ingredientList = new ArrayList<String>();
 
         String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
         int likes = getIntent().getExtras().getInt("likesDT");
 
         listView = (ListView) findViewById(R.id.listviewDT);
         recipesDetailAdapter = new RecipesDetailsAdapter(this, R.layout.activity_recipes_detail_builder);
+        ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
         listView.setAdapter(recipesDetailAdapter);
         json_string = getIntent().getExtras().getString("json_dataDT");
         try {
@@ -37,20 +36,20 @@ public class DisplayDetail extends AppCompatActivity {
             cookTime = jsonObject.getInt("readyInMinutes");
 
             jsonArray = jsonObject.getJSONArray("extendedIngredients");
-            //jsonArray = new JSONArray("ingredients");
-            int count = 0;
 
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
-                ingredientList.add(count, JO.getString("name"));
+                ingredientAmount = JO.getString("originalString");
+                ingredientImage = JO.getString("image");
 
+                IngredientList ingList = new IngredientList(ingredientAmount, ingredientImage);
+                ingredientsAdapter.add(ingList);
                 count++;
             }
 
-            RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime, ingredientList);
-
-            recipesDetailAdapter.add(recipeDetail);
+           // RecipeDetails recipeDetail = new RecipeDetails(title, likes, image, cookTime, ingList);
+            //recipesDetailAdapter.add(recipeDetail);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -9,22 +9,22 @@ import java.util.ArrayList;
 public class RecipeDetails {
     String title, image, description;
     int likes, cookTime;
-    ArrayList<String> ingredientList, recipeInstructions;
+    IngredientList ingList;
+    ArrayList<String> recipeInstructions;
 
-    RecipeDetails(String title, int likes, String image, int cookTime, ArrayList<String> ingList)
+    RecipeDetails(String title, int likes, String image, int cookTime, IngredientList ingList)
     {
         this.setTitle(title);
         this.setLikes(likes);
         this.setImage(image);
         this.setCookTime(cookTime);
-        this.setIngredientList(ingList);
+        this.setIngList(ingList);
     }
-
-    public ArrayList<String> getIngredientList() {
-        return ingredientList;
+    public IngredientList getIngList() {
+        return ingList;
     }
-    public void setIngredientList(ArrayList<String> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngList(IngredientList ingList) {
+        this.ingList = ingList;
     }
     public ArrayList<String> getRecipeInstructions() {
         return recipeInstructions;

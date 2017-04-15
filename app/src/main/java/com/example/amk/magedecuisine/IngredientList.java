@@ -6,31 +6,20 @@ package com.example.amk.magedecuisine;
 
 public class IngredientList {
 
-    String name, unit, image;
-    int amount;
+    String amount, image;
 
-    IngredientList(String name, String unit, int amount, String image)
+    IngredientList(String amount, String image)
     {
-        this.setName(name);
-        this.setUnit(unit);
         this.setAmount(amount);
         this.setImage(image);
     }
 
-    public String getName() {
-        return name;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getImage() {
@@ -41,11 +30,4 @@ public class IngredientList {
         this.image = image;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 }
