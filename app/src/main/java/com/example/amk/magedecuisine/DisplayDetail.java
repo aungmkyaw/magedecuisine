@@ -26,7 +26,9 @@ public class DisplayDetail extends AppCompatActivity {
         ingredientsList.setAdapter(ingredientsAdapter);
 
         //TO POPULATE RECIPE INSTRUCTIONS DATA
+        ListView instructionsList = (ListView) findViewById(R.id.listviewInstructions);
         InstructionsAdapter instructionsAdapter = new InstructionsAdapter(this, R.layout.instructions_layout);
+        instructionsList.setAdapter(instructionsAdapter);
 
 
         String json_string = getIntent().getExtras().getString("json_dataDT");
@@ -88,7 +90,7 @@ public class DisplayDetail extends AppCompatActivity {
                                         JSONArray equipment = innerElem.getJSONArray("equipment");
                                         if (equipment.isNull(0))
                                         {
-                                            RecipeInstructions recipeInstructions = new RecipeInstructions(instructNum, instructStep, "", "");
+                                            RecipeInstructions recipeInstructions = new RecipeInstructions(instructNum, instructStep);
                                             instructionsAdapter.add(recipeInstructions);
                                         }
                                         for(int k = 0; k < equipment.length(); k++)

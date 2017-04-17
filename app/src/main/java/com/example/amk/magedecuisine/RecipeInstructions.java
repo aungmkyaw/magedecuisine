@@ -9,7 +9,11 @@ public class RecipeInstructions {
     int number;
     String step, equipmentName, equipmentImage;
 
-    RecipeInstructions(){}
+    RecipeInstructions(int number, String step)
+    {
+        this.setNumber(number);
+        this.setStep(step);
+    }
 
     RecipeInstructions(int number, String step, String equipmentName, String equipmentImage)
     {
