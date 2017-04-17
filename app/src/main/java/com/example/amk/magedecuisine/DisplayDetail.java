@@ -32,6 +32,7 @@ public class DisplayDetail extends AppCompatActivity {
 
 
         String json_string = getIntent().getExtras().getString("json_dataDT");
+        String json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
         try {
             JSONObject jsonObject = new JSONObject(json_string);
 

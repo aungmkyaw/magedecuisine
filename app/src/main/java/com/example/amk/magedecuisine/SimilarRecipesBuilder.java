@@ -10,9 +10,9 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-public class RecipesDetailBuilder extends AppCompatActivity {
+public class SimilarRecipesBuilder extends AppCompatActivity {
 
-    String answer;
+    String JSONresponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class RecipesDetailBuilder extends AppCompatActivity {
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
             int recipeID = getIntent().getExtras().getInt("idDT");
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/similar";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {
@@ -43,18 +43,19 @@ public class RecipesDetailBuilder extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(Integer...integers) {
+        protected void onProgressUpdate(Integer... integers) {
         }
 
         @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
+            String JSONdetail = getIntent().getExtras().getString("json_dataDT");
             int likes = getIntent().getExtras().getInt("likesDT");
+            JSONresponse = response.getBody().toString();
 
-            answer = response.getBody().toString();
-
-            Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
-            intent.putExtra("json_dataDT", answer);
+            Intent intent = new Intent(getApplicationContext(), DisplayDetail.class);
+            intent.putExtra("json_simRecipes", JSONresponse);
+            intent.putExtra("json_dataDT", JSONdetail);
             intent.putExtra("titleDT", title);
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);
