@@ -7,12 +7,12 @@ package com.example.amk.magedecuisine;
 public class SimilarRecipes {
 
     String image, title;
-    int likes;
+    int cookTime;
 
-    public SimilarRecipes(String name, int noLikes, String pic)
+    public SimilarRecipes(String name, int timeTocook, String pic)
     {
         this.setTitle(name);
-        this.setLikes(noLikes);
+        this.setCookTime(timeTocook);
         this.setImage(pic);
     }
 
@@ -32,11 +32,11 @@ public class SimilarRecipes {
         this.title = title;
     }
 
-    public int getLikes() {
-        return likes;
+    public int getCookTime() {
+        return cookTime;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
     }
 }

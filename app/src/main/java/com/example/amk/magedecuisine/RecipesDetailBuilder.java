@@ -17,7 +17,7 @@ public class RecipesDetailBuilder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipes_detail_builder);
+     //   setContentView(R.layout.activity_recipes_detail_builder);
         new CallMashapeAsync().execute();
     }
 

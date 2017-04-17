@@ -53,7 +53,7 @@ public class SimilarRecAdapter extends ArrayAdapter {
             row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             simRecipeHolder = new SimRecipeHolder();
             simRecipeHolder.simTitle = (TextView) row.findViewById(R.id.similarTitle);
-            simRecipeHolder.simLikes = (TextView) row.findViewById(R.id.similarLikes);
+            simRecipeHolder.simTime = (TextView) row.findViewById(R.id.similarTime);
             simRecipeHolder.simImage = (ImageView) row.findViewById(R.id.similarImage);
             row.setTag(simRecipeHolder);
         }
@@ -66,14 +66,14 @@ public class SimilarRecAdapter extends ArrayAdapter {
         SimilarRecipes simRecipes = (SimilarRecipes) this.getItem(position);
         Picasso.with(this.getContext()).load(simRecipes.getImage()).resize(100,50).into(simRecipeHolder.simImage);
         simRecipeHolder.simTitle.setText(simRecipes.getTitle());
-        simRecipeHolder.simLikes.setText(Integer.toString(simRecipes.getLikes()));
+        simRecipeHolder.simTime.setText(Integer.toString(simRecipes.getCookTime()));
 
         return row;
     }
 
     static class SimRecipeHolder
     {
-        TextView simTitle, simLikes;
+        TextView simTitle, simTime;
         ImageView simImage;
     }
 
