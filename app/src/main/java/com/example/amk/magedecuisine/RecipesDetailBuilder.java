@@ -17,7 +17,6 @@ public class RecipesDetailBuilder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     //   setContentView(R.layout.activity_recipes_detail_builder);
         new CallMashapeAsync().execute();
     }
 
@@ -59,6 +58,8 @@ public class RecipesDetailBuilder extends AppCompatActivity {
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);
             startActivity(intent);
+            overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
+            finish();
         }
     }
 }

@@ -45,6 +45,7 @@ public class DisplayListView extends AppCompatActivity{
                 count++;
             }
 
+            // PASSES RECIPE DATA TO RECIPE DETAIL PAGE
             AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> listView, View v, int position, long id)
                 {
@@ -55,6 +56,7 @@ public class DisplayListView extends AppCompatActivity{
                     intent.putExtra("likesDT", obj.getLikes());
                     intent.putExtra("imageDT", obj.getImage());
                     startActivity(intent);
+
                 }
             };
             listView.setOnItemClickListener(itemClickListener);
