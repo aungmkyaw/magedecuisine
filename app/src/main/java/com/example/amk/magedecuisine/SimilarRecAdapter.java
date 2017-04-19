@@ -50,7 +50,7 @@ public class SimilarRecAdapter extends ArrayAdapter {
         if (row == null)
         {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = layoutInflater.inflate(R.layout.row_layout, parent, false);
+            row = layoutInflater.inflate(R.layout.simrecipes_layout, parent, false);
             simRecipeHolder = new SimRecipeHolder();
             simRecipeHolder.simTitle = (TextView) row.findViewById(R.id.similarTitle);
             simRecipeHolder.simTime = (TextView) row.findViewById(R.id.similarTime);
@@ -76,5 +76,4 @@ public class SimilarRecAdapter extends ArrayAdapter {
         TextView simTitle, simTime;
         ImageView simImage;
     }
-
 }

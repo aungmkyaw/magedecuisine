@@ -48,12 +48,13 @@ public class RecipesDetailBuilder extends AppCompatActivity {
         @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
-            int likes = getIntent().getExtras().getInt("likesDT");
+            int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");;
 
             answer = response.getBody().toString();
 
             Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
             intent.putExtra("json_dataDT", answer);
+            intent.putExtra("IDforSim", recipeID);
             intent.putExtra("titleDT", title);
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);

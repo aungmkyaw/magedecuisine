@@ -24,7 +24,7 @@ public class SimilarRecipesBuilder extends AppCompatActivity {
 
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
-            int recipeID = getIntent().getExtras().getInt("idDT");
+            int recipeID = getIntent().getExtras().getInt("IDforSim");
             String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/similar";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
