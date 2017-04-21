@@ -65,7 +65,7 @@ public class RecipesAdapter extends ArrayAdapter{
         }
 
         Recipes recipes = (Recipes) this.getItem(position);
-        Picasso.with(this.getContext()).load(recipes.getImage()).resize(100,50).into(recipeHolder.tx_image);
+        Picasso.with(this.getContext()).load(recipes.getImage()).resize(300,150).into(recipeHolder.tx_image);
         recipeHolder.tx_title.setText(recipes.getTitle());
         recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
         recipeHolder.tx_ingredientsLeft.setText(Integer.toString(recipes.getIngredientsLeft()));

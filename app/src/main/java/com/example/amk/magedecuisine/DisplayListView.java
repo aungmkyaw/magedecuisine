@@ -29,6 +29,8 @@ public class DisplayListView extends AppCompatActivity{
         listView.setAdapter(recipesAdapter);
         json_string = getIntent().getExtras().getString("json_data");
         try {
+
+            //PARSING RECIPES
             jsonArray = new JSONArray(json_string);
             while(count < jsonArray.length())
             {

@@ -4,9 +4,8 @@
     android:background="@color/colorBackground">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="300dp"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -21,8 +20,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/edit_message"
@@ -36,8 +34,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="sendMessage"
-            android:text="Generate" />
+            android:text="Get Recipes" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Choose Ingredients from Categories:" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </LinearLayout>
 
