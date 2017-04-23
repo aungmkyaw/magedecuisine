@@ -22,7 +22,7 @@ public class DisplayListView extends AppCompatActivity{
         final RecipesAdapter recipesAdapter;
         ListView listView;
         String title, image, json_string;
-        int recipeID, likes, ingredientsLeft, count = 0;
+        int recipeID, likes, ingredientsLeft, ingredientsUsed, ingredients, count = 0;
 
         listView = (ListView) findViewById(R.id.listview);
         recipesAdapter = new RecipesAdapter(this, R.layout.row_layout);
@@ -40,8 +40,10 @@ public class DisplayListView extends AppCompatActivity{
                 likes = JO.getInt("likes");
                 image = JO.getString("image");
                 ingredientsLeft = JO.getInt("missedIngredientCount");
+                ingredientsUsed = JO.getInt("usedIngredientCount");
+                ingredients = ingredientsLeft + ingredientsUsed;
 
-                Recipes recipe = new Recipes(recipeID, title, likes, image, ingredientsLeft);
+                Recipes recipe = new Recipes(recipeID, title, likes, image, ingredients);
 
                 recipesAdapter.add(recipe);
                 count++;

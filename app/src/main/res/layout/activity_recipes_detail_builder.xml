@@ -41,9 +41,6 @@
         android:id="@+id/LikesDT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TitleDT"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/TitleDT"
         android:text="Likes"
         android:textSize="24sp" />
 </RelativeLayout>
