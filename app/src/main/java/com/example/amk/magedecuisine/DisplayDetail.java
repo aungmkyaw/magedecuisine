@@ -2,6 +2,7 @@ package com.example.amk.magedecuisine;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -21,7 +22,7 @@ public class DisplayDetail extends AppCompatActivity {
         listView.setAdapter(recipesDetailAdapter);
 
         //TO POPULATE RECIPE INGREDIENTS DATA
-        ListView ingredientsList = (ListView) findViewById(R.id.listviewIngredients);
+        GridView ingredientsList = (GridView) findViewById(R.id.gridIngredients);
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
         ingredientsList.setAdapter(ingredientsAdapter);
 
@@ -31,10 +32,9 @@ public class DisplayDetail extends AppCompatActivity {
         instructionsList.setAdapter(instructionsAdapter);
 
         //TO POPULATE SIMILAR RECIPES DATA
-        ListView similarList = (ListView) findViewById(R.id.listviewSimilarRecipes);
+        GridView similarList = (GridView) findViewById(R.id.gridRecipes);
         SimilarRecAdapter similarRecAdapter = new SimilarRecAdapter(this, R.layout.simrecipes_layout);
         similarList.setAdapter(similarRecAdapter);
-
 
         String json_string = getIntent().getExtras().getString("json_dataDT");
         String json_simRecipes = getIntent().getExtras().getString("json_simRecipes");

@@ -3,44 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
-
-
-    <ImageView
-        android:id="@+id/imageDT"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/CookTimeDT"
-        android:layout_toStartOf="@+id/CookTimeDT" />
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/TitleDT"
+        android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_height="70dp"
         android:text="Title"
-        android:textSize="24sp" />
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:textSize="28sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageDT"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/TitleDT"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/LikesDT"
+        android:drawableRight="@drawable/heart"
+        android:gravity="center"
+        android:layout_below="@id/TitleDT"
+        android:layout_toRightOf="@id/imageDT"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="Likes"
+        android:textSize="24sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/CookTimeDT"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_height="75dp"
+        android:drawableRight="@drawable/timer"
         android:text="Cook Time"
-        android:textSize="24sp" />
+        android:gravity="center"
+        android:textSize="24sp"
+        android:layout_below="@id/LikesDT"
+        android:layout_toRightOf="@id/imageDT"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
-    <TextView
-        android:id="@+id/LikesDT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Likes"
-        android:textSize="24sp" />
 </RelativeLayout>

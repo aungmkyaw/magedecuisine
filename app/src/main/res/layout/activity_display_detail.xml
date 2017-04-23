@@ -2,40 +2,41 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    android:background="@color/colorBackground" >
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="1dp"
         android:id = "@+id/listviewDT"
-        android:layout_above="@+id/listviewIngredients"
         android:layout_alignParentTop="true" />
 
-    <ListView
+    <GridView
+        android:id="@+id/gridIngredients"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id = "@+id/listviewIngredients"
-        android:layout_above="@+id/listviewInstructions"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="1dp"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="11dp"
         android:id = "@+id/listviewInstructions"
-        android:layout_above="@+id/listviewSimilarRecipes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ListView
+    <GridView
+        android:id="@+id/gridRecipes"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id = "@+id/listviewSimilarRecipes"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_height="500dp"
+        android:columnWidth="90dp"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
 
 </RelativeLayout>

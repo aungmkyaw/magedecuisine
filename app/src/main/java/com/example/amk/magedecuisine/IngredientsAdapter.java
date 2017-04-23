@@ -63,7 +63,7 @@ public class IngredientsAdapter  extends ArrayAdapter{
         }
 
         IngredientList ingredientList = (IngredientList) this.getItem(position);
-        Picasso.with(this.getContext()).load(ingredientList.getImage()).resize(100,50).into(ingredientsHolder.ingImage);
+        Picasso.with(this.getContext()).load(ingredientList.getImage()).resize(100,100).into(ingredientsHolder.ingImage);
         ingredientsHolder.ingAmount.setText(ingredientList.getAmount());
         return row;
     }

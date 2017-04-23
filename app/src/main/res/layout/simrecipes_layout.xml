@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/similarTitle"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Title" />
-
-    <TextView
-        android:id="@+id/similarTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Likes" />
+        android:text="Title"
+        android:gravity="center"
+        android:textSize="18dp"/>
 
     <ImageView
         android:id="@+id/similarImage"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_below="@id/similarTitle"/>
+
+    <TextView
+        android:id="@+id/similarTime"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher" />
-</LinearLayout>
+        android:drawableRight="@drawable/simtimer"
+        android:text="Time"
+        android:gravity="center"
+        android:textSize="18dp"/>
+
+</GridLayout>
