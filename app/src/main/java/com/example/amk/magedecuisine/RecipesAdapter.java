@@ -55,7 +55,7 @@ public class RecipesAdapter extends ArrayAdapter{
             recipeHolder.tx_title = (TextView) row.findViewById(R.id.tx_title);
             recipeHolder.tx_likes = (TextView) row.findViewById(R.id.tx_likes);
             recipeHolder.tx_image = (ImageView) row.findViewById(R.id.tx_image);
-            recipeHolder.tx_ingredientsLeft = (TextView) row.findViewById(R.id.tx_ingredientsLeft);
+            recipeHolder.tx_ingredients = (TextView) row.findViewById(R.id.tx_ingredients);
             row.setTag(recipeHolder);
         }
 
@@ -65,17 +65,17 @@ public class RecipesAdapter extends ArrayAdapter{
         }
 
         Recipes recipes = (Recipes) this.getItem(position);
-        Picasso.with(this.getContext()).load(recipes.getImage()).resize(100,50).into(recipeHolder.tx_image);
+        Picasso.with(this.getContext()).load(recipes.getImage()).resize(150,150).into(recipeHolder.tx_image);
         recipeHolder.tx_title.setText(recipes.getTitle());
         recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
-        recipeHolder.tx_ingredientsLeft.setText(Integer.toString(recipes.getIngredientsLeft()));
+        recipeHolder.tx_ingredients.setText(Integer.toString(recipes.getIngredients()));
 
         return row;
     }
     
     static class RecipeHolder
     {
-        TextView tx_title, tx_likes, tx_ingredientsLeft;
+        TextView tx_title, tx_likes, tx_ingredients;
         ImageView tx_image;
     }
 

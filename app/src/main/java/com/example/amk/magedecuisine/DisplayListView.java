@@ -13,22 +13,24 @@ import org.json.JSONObject;
 
 public class DisplayListView extends AppCompatActivity{
 
-    JSONArray jsonArray;
-    RecipesAdapter recipesAdapter;
-    ListView listView;
-    String title, image, json_string;
-    int recipeID, likes, ingredientsLeft, count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_listview_layout);
+
+        JSONArray jsonArray;
+        final RecipesAdapter recipesAdapter;
+        ListView listView;
+        String title, image, json_string;
+        int recipeID, likes, ingredientsLeft, ingredientsUsed, ingredients, count = 0;
 
         listView = (ListView) findViewById(R.id.listview);
         recipesAdapter = new RecipesAdapter(this, R.layout.row_layout);
         listView.setAdapter(recipesAdapter);
         json_string = getIntent().getExtras().getString("json_data");
         try {
+
+            //PARSING RECIPES
             jsonArray = new JSONArray(json_string);
             while(count < jsonArray.length())
             {
@@ -38,13 +40,16 @@ public class DisplayListView extends AppCompatActivity{
                 likes = JO.getInt("likes");
                 image = JO.getString("image");
                 ingredientsLeft = JO.getInt("missedIngredientCount");
+                ingredientsUsed = JO.getInt("usedIngredientCount");
+                ingredients = ingredientsLeft + ingredientsUsed;
 
-                Recipes recipe = new Recipes(recipeID, title, likes, image, ingredientsLeft);
+                Recipes recipe = new Recipes(recipeID, title, likes, image, ingredients);
 
                 recipesAdapter.add(recipe);
                 count++;
             }
 
+            // PASSES RECIPE DATA TO RECIPE DETAIL PAGE
             AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> listView, View v, int position, long id)
                 {
@@ -55,6 +60,7 @@ public class DisplayListView extends AppCompatActivity{
                     intent.putExtra("likesDT", obj.getLikes());
                     intent.putExtra("imageDT", obj.getImage());
                     startActivity(intent);
+
                 }
             };
             listView.setOnItemClickListener(itemClickListener);

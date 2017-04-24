@@ -2,46 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/colorBackground"
-    android:layout_height="250dp">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground" >
 
     <TextView
         android:id="@+id/tx_title"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:gravity="center"
         android:text="Title"
+        android:layout_toRightOf="@+id/tx_image"
+        android:background="@drawable/titlebutton"
+        android:textColor="@color/colorButton5"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:layout_above="@+id/tx_likes"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true" />
 
     <ImageView
         android:id="@+id/tx_image"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:gravity="left"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/tx_title" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tx_likes"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="50dp"
+        android:drawableRight="@drawable/heart"
         android:gravity="center"
         android:text="Likes"
-        android:layout_above="@+id/tx_ingredientsLeft"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="20sp"
+        android:layout_above="@+id/tx_ingredients"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/tx_image"
+        android:layout_toEndOf="@+id/tx_image" />
 
     <TextView
-        android:id="@+id/tx_ingredientsLeft"
+        android:id="@+id/tx_ingredients"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="50dp"
+        android:text="Ingredients"
+        android:drawableRight="@drawable/ingredients"
         android:gravity="center"
-        android:text="Ingredients Needed"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/tx_image"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/tx_image"
+        android:layout_toEndOf="@+id/tx_image" />
 
 </RelativeLayout>
