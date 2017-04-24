@@ -4,39 +4,95 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground" >
 
+    <TextView
+        android:text="Recipe Details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainTitle"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/titlebutton"/>
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="200dp"
         android:id = "@+id/listviewDT"
-        android:layout_alignParentTop="true" />
+        android:layout_below="@id/mainTitle"/>
+
+    <TextView
+        android:text="Ingredient List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ingredientTitle"
+        android:layout_below="@id/listviewDT"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/titlebutton"/>
 
     <GridView
         android:id="@+id/gridIngredients"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="100dp"
         android:columnWidth="90dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@id/ingredientTitle" />
+
+    <TextView
+        android:text="Recipe Instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/instructionsTitle"
+        android:layout_below="@id/gridIngredients"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/titlebutton"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="11dp"
+        android:layout_height="100dp"
         android:id = "@+id/listviewInstructions"
+        android:layout_below="@id/instructionsTitle"/>
+
+    <TextView
+        android:text="Similar Recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/similarRecTitle"
+        android:layout_below="@id/listviewInstructions"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/titlebutton"/>
 
     <GridView
         android:id="@+id/gridRecipes"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="100dp"
         android:columnWidth="90dp"
         android:numColumns="2"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@id/similarRecTitle"/>
 
 </RelativeLayout>
