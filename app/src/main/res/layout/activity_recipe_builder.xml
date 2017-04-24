@@ -28,10 +28,11 @@
         android:id="@+id/ImageButton01"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_toRightOf="@id/edit_message"
-        android:layout_below="@id/textView2"
         android:onClick="sendMessage"
-        android:src="@drawable/search" />
+        android:src="@drawable/search"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/chooseCat"

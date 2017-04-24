@@ -16,20 +16,22 @@
 
     <Button
         android:id="@+id/addBtn"
-        android:text="Add New Item"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="addItems"/>
+        android:onClick="addBtnClicked"
+        android:text="Add New Item" />
 
     <Button
         android:id="@+id/rmvBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="rmvBtnClicked"
         android:text="REMOVE ITEM" />
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/pantryView"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawSelectorOnTop="false" />
+        android:text="TextView" />
+
 </LinearLayout>
