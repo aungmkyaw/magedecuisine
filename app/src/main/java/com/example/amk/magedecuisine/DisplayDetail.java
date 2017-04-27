@@ -1,7 +1,9 @@
 package com.example.amk.magedecuisine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -10,6 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DisplayDetail extends AppCompatActivity {
+
+    String json_string, json_simRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +30,8 @@ public class DisplayDetail extends AppCompatActivity {
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
         ingredientsList.setAdapter(ingredientsAdapter);
 
-        //TO POPULATE RECIPE INSTRUCTIONS DATA
-        ListView instructionsList = (ListView) findViewById(R.id.listviewInstructions);
-        InstructionsAdapter instructionsAdapter = new InstructionsAdapter(this, R.layout.instructions_layout);
-        instructionsList.setAdapter(instructionsAdapter);
-
-        //TO POPULATE SIMILAR RECIPES DATA
-        GridView similarList = (GridView) findViewById(R.id.gridRecipes);
-        SimilarRecAdapter similarRecAdapter = new SimilarRecAdapter(this, R.layout.simrecipes_layout);
-        similarList.setAdapter(similarRecAdapter);
-
-        String json_string = getIntent().getExtras().getString("json_dataDT");
-        String json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
+        json_string = getIntent().getExtras().getString("json_dataDT");
+        json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
         try {
             JSONObject jsonObject = new JSONObject(json_string);
 
@@ -66,66 +60,23 @@ public class DisplayDetail extends AppCompatActivity {
                 ingredientCount++;
             }
 
-
-            //PARSING INSTRUCTIONS AND EQUIPMENT NEEDED FOR RECIPE
-            int instructNum;
-            String instructStep, equipmentName, equipmentImage;
-
-            JSONObject mainObj = new JSONObject(json_string);
-            if(mainObj != null) {
-                JSONArray list = mainObj.getJSONArray("analyzedInstructions");
-                if(list != null) {
-                    for(int i = 0; i < list.length();i++) {
-                        JSONObject elem = list.getJSONObject(i);
-                        if(elem != null) {
-                            JSONArray steps = elem.getJSONArray("steps");
-                            if(steps != null) {
-                                for(int j = 0; j < steps.length();j++) {
-                                    JSONObject innerElem = steps.getJSONObject(j);
-                                    if(innerElem != null) {
-                                        instructNum = innerElem.getInt("number");
-                                        instructStep = innerElem.getString("step");
-
-                                        JSONArray equipment = innerElem.getJSONArray("equipment");
-                                        if (equipment.isNull(0)) {
-                                            RecipeInstructions recipeInstructions = new RecipeInstructions(instructNum, instructStep);
-                                            instructionsAdapter.add(recipeInstructions);
-                                        }
-                                        for(int k = 0; k < equipment.length(); k++) {
-                                            JSONObject equiplist = equipment.getJSONObject(k);
-                                            if (equipment != null) {
-                                                equipmentName = equiplist.getString("name");
-                                                equipmentImage = equiplist.getString("image");
-                                                RecipeInstructions recipeInstructions = new RecipeInstructions(instructNum, instructStep, equipmentName, equipmentImage);
-                                                instructionsAdapter.add(recipeInstructions);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            //PARSING SIMILAR RECIPES
-            String simImage, simTitle;
-            int simCooktime, simRecipescount = 0;
-
-            JSONArray jsonSimarray = new JSONArray(json_simRecipes);
-            while(simRecipescount < jsonSimarray.length())
-            {
-                JSONObject JOsim = jsonSimarray.getJSONObject(simRecipescount);
-                simTitle = JOsim.getString("title");
-                simCooktime = JOsim.getInt("readyInMinutes");
-                simImage = "https://spoonacular.com/recipeImages/" + JOsim.getString("image");
-                SimilarRecipes similarRecipes = new SimilarRecipes(simTitle, simCooktime, simImage);
-                similarRecAdapter.add(similarRecipes);
-                simRecipescount++;
-            }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+    public void viewSimilarRecipes(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), ViewSimilarRecipes.class);
+        intent.putExtra("json_simRecipes", json_simRecipes);
+        startActivity(intent);
+    }
+
+    public void viewRecipeInstructions(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), ViewRecipeInstructions.class);
+        intent.putExtra("json_data", json_string);
+        startActivity(intent);
+    }
+
 }

@@ -23,7 +23,9 @@
         <activity android:name=".DisplayListView" />
         <activity android:name=".RecipesDetailBuilder" />
         <activity android:name=".DisplayDetail" />
-        <activity android:name=".SimilarRecipesBuilder"></activity>
+        <activity android:name=".SimilarRecipesBuilder" />
+        <activity android:name=".ViewSimilarRecipes" />
+        <activity android:name=".ViewRecipeInstructions"></activity>
     </application>
 
 </manifest>

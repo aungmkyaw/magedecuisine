@@ -19,7 +19,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="225dp"
+        android:layout_height="190dp"
         android:id = "@+id/listviewDT"
         android:layout_below="@id/mainTitle"/>
 
@@ -47,53 +47,33 @@
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
-        android:layout_below="@id/ingredientTitle" />
+        android:layout_below="@id/ingredientTitle"
+        android:layout_above="@+id/similarRecTitle" />
 
-    <TextView
-        android:text="Recipe Instructions"
+    <Button
+        android:text="View Recipe Instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/instructionsTitle"
-        android:layout_below="@id/gridIngredients"
         android:gravity="center"
-        android:textSize="24dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:textSize="18dp"
+        android:onClick="viewRecipeInstructions"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/titlebutton"/>
+        android:layout_alignParentStart="true" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id = "@+id/listviewInstructions"
-        android:layout_below="@id/instructionsTitle"/>
-
-    <TextView
-        android:text="Similar Recipes"
+    <Button
+        android:text="View Similar Recipes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/similarRecTitle"
-        android:layout_below="@id/listviewInstructions"
         android:gravity="center"
-        android:textSize="24dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:textSize="18dp"
+        android:onClick="viewSimilarRecipes"
+        android:layout_above="@+id/instructionsTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@drawable/titlebutton"/>
-
-    <GridView
-        android:id="@+id/gridRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:columnWidth="90dp"
-        android:numColumns="2"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:layout_below="@id/similarRecTitle"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginLeft="71dp"
+        android:layout_marginStart="71dp" />
 
 </RelativeLayout>
