@@ -19,7 +19,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="225dp"
         android:id = "@+id/listviewDT"
         android:layout_below="@id/mainTitle"/>
 
@@ -65,7 +65,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:id = "@+id/listviewInstructions"
         android:layout_below="@id/instructionsTitle"/>
 
@@ -93,6 +93,7 @@
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
-        android:layout_below="@id/similarRecTitle"/>
+        android:layout_below="@id/similarRecTitle"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

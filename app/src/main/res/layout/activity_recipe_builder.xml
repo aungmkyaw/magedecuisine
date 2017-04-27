@@ -33,27 +33,6 @@
         android:onClick="sendMessage"
         android:src="@drawable/search" />
 
-    <TextView
-        android:id="@+id/chooseCat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_message"
-        android:text="Choose Ingredients from Categories:" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_below="@id/chooseCat"/>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@id/spinner"/>
-
 </RelativeLayout>
 
 </ScrollView>
