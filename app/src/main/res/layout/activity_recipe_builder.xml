@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/edit_message"
-        android:layout_width="365dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/textView2"
         android:hint="Edit" />

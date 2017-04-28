@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/step"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="310dp"
         android:textSize="20dp"
         android:text="step"
         android:layout_toRightOf="@id/number"/>
