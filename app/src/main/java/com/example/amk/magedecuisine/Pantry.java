@@ -1,18 +1,17 @@
 package com.example.amk.magedecuisine;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
-import android.text.style.ClickableSpan;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -21,10 +20,13 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.ArrayList;
 
+import static com.example.amk.magedecuisine.R.id.listview;
+
 public class Pantry extends AppCompatActivity {
 
     MyDBHandler dbHandler;
-    TextView pantryView;
+    ArrayAdapter<String> adapter;
+    ListView pantryView;
     EditText entItem;
     String answer;
 
@@ -33,13 +35,23 @@ public class Pantry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantry);
-        pantryView = (TextView) findViewById(R.id.pantryView);
+        pantryView = (ListView) findViewById(R.id.pantryView);
         entItem = (EditText) findViewById(R.id.entItem);
         final Button addBtn = (Button) findViewById(R.id.addBtn);
-        final Button rmvBtn = (Button) findViewById(R.id.rmvBtn);
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         dbHandler = new MyDBHandler(this, null, null, 1);
         printDatabase();
+        pantryView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String inputText = (String) pantryView.getItemAtPosition(i);
+                Log.d("DeletedText", inputText);
+                dbHandler.deleteIngredients(inputText);
+                pantryView.removeViewInLayout(view);
+                printDatabase();
+                return false;
+            }
+        });
     }
 
     public void addBtnClicked(View view)
@@ -57,21 +69,14 @@ public class Pantry extends AppCompatActivity {
         printDatabase();
     }
 
-    public void rmvBtnClicked(View view)
-    {
-        //Need to use clickable span to select the text in the text view to remove here adding to inputText
-        String inputText = entItem.getText().toString();
-        dbHandler.deleteIngredients(inputText);
-        printDatabase();
-    }
-
-
     public void printDatabase()
     {
-        String dbString = dbHandler.ingredientToString();
-        pantryView.setText(dbString);
+        ArrayList<String> ings = dbHandler.ingToList();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,ings);
+        pantryView.setAdapter(adapter);
         entItem.setText("");
     }
+
 
     public void sendMessage(View view) {
         String pantryIngredients = dbHandler.ingSearchString();

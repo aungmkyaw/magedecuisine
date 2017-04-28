@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/entItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:ems="10"
         android:hint="Enter Item"
         android:inputType="textPersonName" />
@@ -23,24 +23,16 @@
         android:text="Add New Item" />
 
     <Button
-        android:id="@+id/rmvBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="rmvBtnClicked"
-        android:text="REMOVE ITEM" />
-
-    <Button
         android:id="@+id/searchBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
         android:text="Search" />
 
-    <TextView
+    <ListView
         android:id="@+id/pantryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TextView"
-        android:textColorLink="@drawable/red"/>
+        android:text="TextView" />
 
 </LinearLayout>

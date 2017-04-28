@@ -6,6 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Rex on 3/9/2017.
  */
@@ -129,6 +133,32 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return dbString;
+    }
+
+    public ArrayList<String> ingToList()
+    {
+        ArrayList<String> dbStringAr = new ArrayList<String>();
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_INGREDIENT + " WHERE 1";
+
+        //Cursor point to the location in yoru result
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        recordSet.getColumnIndex("_ingredientname");
+        //Position after the last row means the end of the results
+
+        //Log.d("myTag", "This is my message " + recordSet.getColumnIndex("_recipename"));
+        while (!recordSet.isAfterLast()) {
+            // null could happen if we used our empty constructor
+            if (recordSet.getString(recordSet.getColumnIndex("_ingredientname")) != null) {
+                String dbString = recordSet.getString(recordSet.getColumnIndex("_ingredientname"));
+                dbStringAr.add(dbString);
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return dbStringAr;
     }
 
     public String ingSearchString()
