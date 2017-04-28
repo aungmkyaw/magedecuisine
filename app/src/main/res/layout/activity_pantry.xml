@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:background="@color/colorBackground"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:weightSum="1">
 
     <EditText
         android:id="@+id/entItem"
@@ -28,10 +29,18 @@
         android:onClick="rmvBtnClicked"
         android:text="REMOVE ITEM" />
 
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendMessage"
+        android:text="Search" />
+
     <TextView
         android:id="@+id/pantryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColorLink="@drawable/red"/>
 
 </LinearLayout>

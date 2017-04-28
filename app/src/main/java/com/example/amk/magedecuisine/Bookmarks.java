@@ -42,4 +42,7 @@ public class Bookmarks extends AppCompatActivity {
         bookMarkView.setText(dbString);
         bmInput.setText("");
     }
+
+
+
 }

@@ -73,6 +73,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_RECIPENAME +"=\"" + recipeName + "\"" );
     }
 
+    public void deleteIngredients(String recipeName)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_INGREDIENT + " WHERE " + COLUMN_INGREDIENT +"=\"" + recipeName + "\"" );
+    }
+
     public String databaseToString()
     {
         String dbString = "";
@@ -124,6 +130,32 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
         return dbString;
     }
+
+    public String ingSearchString()
+    {
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_INGREDIENT + " WHERE 1";
+
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        recordSet.getColumnIndex("_ingredientname");
+        //Position after the last row means the end of the results
+
+        //Log.d("myTag", "This is my message " + recordSet.getColumnIndex("_recipename"));
+        while (!recordSet.isAfterLast()) {
+            // null could happen if we used our empty constructor
+            if (recordSet.getString(recordSet.getColumnIndex("_ingredientname")) != null) {
+                dbString += recordSet.getString(recordSet.getColumnIndex("_ingredientname"));
+                dbString += ",";
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return dbString;
+    }
+
 
 
 
