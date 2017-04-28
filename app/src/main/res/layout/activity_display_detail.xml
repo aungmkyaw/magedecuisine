@@ -70,7 +70,7 @@
         android:id="@+id/similarRecTitle"
         android:gravity="center"
         android:textSize="18dp"
-        android:background="@drawable/ovalbutton3"
+        android:background="@drawable/ovalbutton4"
         android:onClick="viewSimilarRecipes"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

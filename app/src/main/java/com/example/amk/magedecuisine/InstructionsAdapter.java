@@ -66,7 +66,7 @@ public class InstructionsAdapter extends ArrayAdapter{
         }
 
         RecipeInstructions recipeInstructions = (RecipeInstructions) this.getItem(position);
-        Picasso.with(this.getContext()).load(recipeInstructions.getEquipmentImage()).resize(200,225).into(instructionsHolder.equipPic);
+        Picasso.with(this.getContext()).load(recipeInstructions.getEquipmentImage()).resize(100,125).into(instructionsHolder.equipPic);
         instructionsHolder.instructNum.setText(Integer.toString(recipeInstructions.getNumber()));
         instructionsHolder.instructStep.setText(recipeInstructions.getStep());
         instructionsHolder.equipName.setText(recipeInstructions.getEquipmentName());
