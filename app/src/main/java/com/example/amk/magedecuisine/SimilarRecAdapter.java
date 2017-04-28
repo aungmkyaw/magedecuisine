@@ -64,7 +64,7 @@ public class SimilarRecAdapter extends ArrayAdapter {
         }
 
         SimilarRecipes simRecipes = (SimilarRecipes) this.getItem(position);
-        Picasso.with(this.getContext()).load(simRecipes.getImage()).resize(100,50).into(simRecipeHolder.simImage);
+        Picasso.with(this.getContext()).load(simRecipes.getImage()).resize(200,200).into(simRecipeHolder.simImage);
         simRecipeHolder.simTitle.setText(simRecipes.getTitle());
         simRecipeHolder.simTime.setText(Integer.toString(simRecipes.getCookTime()));
 

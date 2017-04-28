@@ -19,7 +19,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="300dp"
         android:id = "@+id/listviewDT"
         android:layout_below="@id/mainTitle"/>
 
@@ -48,11 +48,11 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_below="@id/ingredientTitle"
-        android:layout_above="@+id/similarRecTitle" />
+        android:layout_above="@+id/instructionsTitle" />
 
     <Button
         android:text="View Recipe Instructions"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/instructionsTitle"
         android:gravity="center"
@@ -64,16 +64,14 @@
 
     <Button
         android:text="View Similar Recipes"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/similarRecTitle"
         android:gravity="center"
         android:textSize="18dp"
         android:onClick="viewSimilarRecipes"
-        android:layout_above="@+id/instructionsTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="71dp"
-        android:layout_marginStart="71dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
