@@ -29,6 +29,7 @@ public class Pantry extends AppCompatActivity {
     ListView pantryView;
     EditText entItem;
     String answer;
+    RecipeBuilder recipeBuilder;
 
 
     @Override
@@ -54,25 +55,21 @@ public class Pantry extends AppCompatActivity {
         });
     }
 
-    public void addBtnClicked(View view)
-    {
+    public void addBtnClicked(View view) {
         String ingredients = entItem.getText().toString().toString();
-        if (ingredients.matches("") || ingredients.matches(" "))
-        {
+        if (ingredients.matches("") || ingredients.matches(" ")) {
             Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
+        } else {
             Ingredient ingredient = new Ingredient(entItem.getText().toString().toString());
             dbHandler.addIngredient(ingredient);
         }
         printDatabase();
     }
 
-    public void printDatabase()
-    {
+
+    public void printDatabase() {
         ArrayList<String> ings = dbHandler.ingToList();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,ings);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ings);
         pantryView.setAdapter(adapter);
         entItem.setText("");
     }
@@ -83,12 +80,9 @@ public class Pantry extends AppCompatActivity {
         Log.d("tag1", pantryIngredients);
         String ingredients = pantryIngredients;
 
-        if (ingredients.matches(""))
-        {
+        if (ingredients.matches("")) {
             Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
+        } else {
             ingredients = ingredients.replaceAll("\\s+", "+"); //Remove ALL spaces in String
             ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
 
@@ -115,18 +109,18 @@ public class Pantry extends AppCompatActivity {
 
             return request;
         }
+
+        @Override
+        protected void onProgressUpdate(Integer...integers) {
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse<JsonNode> response) {
+            answer = response.getBody().toString();
+
+            Intent intent = new Intent(getApplicationContext(), DisplayListView.class);
+            intent.putExtra("json_data", answer);
+            startActivity(intent);
+        }
     }
-
-    protected void onProgressUpdate(Integer...integers) {
-    }
-
-
-    protected void onPostExecute(HttpResponse<JsonNode> response) {
-        answer = response.getBody().toString();
-
-        Intent intent = new Intent(getApplicationContext(), DisplayListView.class);
-        intent.putExtra("json_data", answer);
-        startActivity(intent);
-    }
-
 }
