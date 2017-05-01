@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -24,11 +25,13 @@ import static com.example.amk.magedecuisine.R.id.spinner;
 public class RecipeBuilder extends AppCompatActivity {
 
     String answer;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_builder);
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         final Spinner sItems = (Spinner) findViewById(spinner);
         List<String> spinnerArray =  new ArrayList<String>();
@@ -61,6 +64,22 @@ public class RecipeBuilder extends AppCompatActivity {
             new CallMashapeAsync().execute(ingredients);
         }
     }
+
+    public void sendPantryMessage(View view) {
+        String pantryIngredients = dbHandler.ingSearchString();
+        Log.d("tag1", pantryIngredients);
+        String ingredients = pantryIngredients;
+
+        if (ingredients.matches("")) {
+            Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
+        } else {
+            ingredients = ingredients.replaceAll("\\s+", "+"); //Remove ALL spaces in String
+            ingredients = ingredients.replaceAll(",", "%2C"); //Replace commas in String for API CALL
+
+            new RecipeBuilder.CallMashapeAsync().execute(ingredients);
+        }
+    }
+
 
     private class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
 
