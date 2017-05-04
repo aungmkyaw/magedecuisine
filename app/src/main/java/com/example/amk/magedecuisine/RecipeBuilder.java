@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -18,9 +19,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.ArrayList;
-
-
 import static com.example.amk.magedecuisine.R.id.entItem;
+
 
 
 public class RecipeBuilder extends AppCompatActivity {
@@ -51,6 +51,7 @@ public class RecipeBuilder extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ings);
         pantryView.setAdapter(adapter);
         edit_message.setText("");
+
     }
 
     //WHEN USER CLICKS GET RECIPES BUTTON

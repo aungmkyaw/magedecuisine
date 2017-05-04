@@ -32,7 +32,7 @@
 
     <EditText
         android:id="@+id/edit_message"
-        android:layout_width="365dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/textView2"
         android:hint="Edit"
@@ -48,7 +48,6 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -68,6 +67,7 @@
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
 
