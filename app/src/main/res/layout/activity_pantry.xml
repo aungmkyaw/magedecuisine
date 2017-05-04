@@ -7,6 +7,15 @@
     android:layout_height="fill_parent"
     android:weightSum="1">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Pantry"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/entItem"
         android:layout_width="match_parent"
@@ -19,6 +28,7 @@
         android:id="@+id/addBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/ovalbutton2"
         android:onClick="addBtnClicked"
         android:text="Add New Item" />
 
@@ -26,6 +36,7 @@
         android:id="@+id/searchBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/ovalbutton1"
         android:onClick="sendMessage"
         android:text="Search" />
 
