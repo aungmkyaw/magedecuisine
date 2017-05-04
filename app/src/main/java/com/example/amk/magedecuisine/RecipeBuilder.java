@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -17,34 +18,39 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.amk.magedecuisine.R.id.spinner;
+
+import static com.example.amk.magedecuisine.R.id.entItem;
 
 
 public class RecipeBuilder extends AppCompatActivity {
 
+    ArrayAdapter<String> adapter;
     String answer;
     MyDBHandler dbHandler;
+    ListView pantryView;
+    EditText edit_message;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_builder);
+        pantryView = (ListView) findViewById(R.id.pantryView);
+        edit_message = (EditText) findViewById(R.id.edit_message);
+
+
         dbHandler = new MyDBHandler(this, null, null, 1);
+        printDatabase();
 
-        final Spinner sItems = (Spinner) findViewById(spinner);
-        List<String> spinnerArray =  new ArrayList<String>();
-        spinnerArray.add("Dairy");
-        spinnerArray.add("Meat");
-        spinnerArray.add("Vegetables");
-        spinnerArray.add("Fruits");
+    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sItems.setAdapter(adapter);
+    public void printDatabase() {
+        ArrayList<String> ings = dbHandler.ingToList();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ings);
+        pantryView.setAdapter(adapter);
+        edit_message.setText("");
     }
 
     //WHEN USER CLICKS GET RECIPES BUTTON
@@ -66,9 +72,12 @@ public class RecipeBuilder extends AppCompatActivity {
     }
 
     public void sendPantryMessage(View view) {
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String inputIng = editText.getText().toString();
         String pantryIngredients = dbHandler.ingSearchString();
-        Log.d("tag1", pantryIngredients);
-        String ingredients = pantryIngredients;
+        String tempIng = pantryIngredients + inputIng;
+        String ingredients = tempIng;
+        Log.d("tag1", ingredients);
 
         if (ingredients.matches("")) {
             Toast.makeText(getApplicationContext(), "Enter Ingredients!", Toast.LENGTH_LONG).show();
@@ -114,4 +123,6 @@ public class RecipeBuilder extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 }

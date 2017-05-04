@@ -42,6 +42,7 @@ public class Pantry extends AppCompatActivity {
         final Button searchBtn = (Button) findViewById(R.id.searchBtn);
         dbHandler = new MyDBHandler(this, null, null, 1);
         printDatabase();
+
         pantryView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
