@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Button;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -30,12 +31,22 @@ public class DisplayDetail extends AppCompatActivity {
 
         //TO POPULATE RECIPE INGREDIENTS DATA
         GridView ingredientsList = (GridView) findViewById(R.id.gridIngredients);
+        Button bookMark = (Button) findViewById(R.id.bookmark);
+
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
         ingredientsList.setAdapter(ingredientsAdapter);
         json_string = getIntent().getExtras().getString("json_dataDT");
         json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
         recipeID = getIntent().getExtras().getInt("recipeID");
         Log.d("RecipeID", Integer.toString(recipeID));
+        if(dbHandler.checkRecipeStored(recipeID))
+        {
+            bookMark.setText("Remove");
+        }
+        else
+        {
+            bookMark.setText("Bookmark");
+        }
         try {
             JSONObject jsonObject = new JSONObject(json_string);
 
@@ -85,8 +96,20 @@ public class DisplayDetail extends AppCompatActivity {
 
     public void bookMark(View view)
     {
-        Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),getIntent().getExtras().getInt("recipeID"));
+        Button bookMark = (Button) findViewById(R.id.bookmark);
+        if(dbHandler.checkRecipeStored(recipeID))
+        {
+            dbHandler.deleteRecipe(getIntent().getExtras().getInt("recipeID"));
+            bookMark.setText("Bookmark");
+        }
+        else
+        {
+            Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),getIntent().getExtras().getInt("recipeID"),getIntent().getExtras().getString("imageDT"));
+            dbHandler.addRecipe(recipe);
+            bookMark.setText("Remove");
+        }
+
         //Log.d("RecipeID", );
-        dbHandler.addRecipe(recipe);
+
     }
 }

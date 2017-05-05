@@ -6,9 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.database.sqlite.SQLiteConstraintException;
 
 /**
  * Created by Rex on 3/9/2017.
@@ -16,7 +19,7 @@ import java.util.List;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME= "recipes.db";
     private static final String DATABASE_INGREDIENT_NAME= "ingredients.db";
     public static final String TABLE_RECIPES = "recipes";
@@ -25,7 +28,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_RECIPENAME = "_recipename";
     public static final String COLUMN_INGREDIENT = "_ingredientname";
     public static final String COLUMN_SEARCHCODE = "_searchcode";
-
+    public static final String COLUMN_IMAGE = "_image";
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -36,6 +39,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_RECIPENAME + " TEXT, " +
                 COLUMN_SEARCHCODE + " INTEGER, " +
+                COLUMN_IMAGE + " TEXT, " +
                 "UNIQUE (" + COLUMN_SEARCHCODE + ")" +
                 ");";
         db.execSQL(query);
@@ -50,6 +54,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
         onCreate(db);
     }
 
@@ -59,9 +64,29 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_RECIPENAME, recipe.get_recipename());
         values.put(COLUMN_SEARCHCODE, recipe.get_searchcode());
+        values.put(COLUMN_IMAGE, recipe.getImage());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_RECIPES, null, values);
         db.close();
+    }
+
+    public boolean checkRecipeStored(int searchcode)
+    {
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_RECIPES + " WHERE " + COLUMN_SEARCHCODE +"=\"" + searchcode + "\"";
+
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        recordSet.getColumnIndex("_ingredientname");
+
+        if (recordSet.moveToFirst())
+        {
+            return true;
+        }
+
+        return false;
     }
 
     //Add a new row for Ingredients
@@ -75,7 +100,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void deleteRecipe(String searchcode)
+    public void deleteRecipe(int searchcode)
     {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_SEARCHCODE +"=\"" + searchcode + "\"" );
@@ -107,6 +132,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 dbString += recordSet.getString(recordSet.getColumnIndex("_recipename"));
                 dbString += " ";
                 dbString += recordSet.getString(recordSet.getColumnIndex("_searchcode"));
+                dbString += " ";
+                dbString += recordSet.getString(recordSet.getColumnIndex("_image"));
                 dbString += "\n";
             }
             recordSet.moveToNext();
@@ -192,7 +219,31 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return dbString;
     }
 
-
+    public ArrayList<Recipe> getBookmarks()
+    {
+        String recipename;
+        int searchcode;
+        String image;
+        ArrayList<Recipe> result = new ArrayList<Recipe>();
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_RECIPES + " WHERE 1";
+        Cursor recordSet = db.rawQuery(query, null);
+        recordSet.moveToFirst();
+        recordSet.getColumnIndex("_recipename");
+        while (!recordSet.isAfterLast()) {
+            // null could happen if we used our empty constructor
+            if (recordSet.getString(recordSet.getColumnIndex("_recipename")) != null) {
+                recipename = recordSet.getString(recordSet.getColumnIndex("_recipename"));
+                searchcode = recordSet.getColumnIndex("_searchcode");
+                image = recordSet.getString(recordSet.getColumnIndex("_image"));
+                Recipe recipe = new Recipe(recipename, searchcode, image);
+                result.add(recipe);
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return result;
+    }
 
 
 }

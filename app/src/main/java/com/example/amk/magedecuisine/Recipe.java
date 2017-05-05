@@ -9,6 +9,16 @@ public class Recipe {
     private String _recipename;
     private int _searchcode;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    String image;
+
     public int get_searchcode() {
         return _searchcode;
     }
@@ -17,10 +27,11 @@ public class Recipe {
         this._searchcode = _searchcode;
     }
 
-    public Recipe(String recipename, int searchcode)
+    public Recipe(String recipename, int searchcode, String image)
     {
         this._recipename = recipename;
         this._searchcode = searchcode;
+        this.image=image;
     }
 
     public void set_id(int _id) {
