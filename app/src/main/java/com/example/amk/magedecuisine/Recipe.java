@@ -9,12 +9,23 @@ public class Recipe {
     private String _recipename;
     private int _searchcode;
 
-    public Recipe(String recipename, int searchcode, String image, int likes)
+    public int get_ingredent() {
+        return _ingredent;
+    }
+
+    public void set_ingredent(int _ingredent) {
+        this._ingredent = _ingredent;
+    }
+
+    private int _ingredent;
+
+    public Recipe(String recipename, int searchcode, String image, int likes, int ing)
     {
         this._recipename = recipename;
         this._searchcode = searchcode;
         this.image=image;
         this._likes=likes;
+        this._ingredent=ing;
     }
 
     public int get_likes() {

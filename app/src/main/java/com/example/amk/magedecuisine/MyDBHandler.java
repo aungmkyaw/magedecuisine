@@ -19,7 +19,7 @@ import android.database.sqlite.SQLiteConstraintException;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME= "recipes.db";
     private static final String DATABASE_INGREDIENT_NAME= "ingredients.db";
     public static final String TABLE_RECIPES = "recipes";
@@ -30,6 +30,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_SEARCHCODE = "_searchcode";
     public static final String COLUMN_IMAGE = "_image";
     public static final String COLUMN_LIKES = "_likes";
+    public static final String COLUMN_ING = "_ing";
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -41,7 +42,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 COLUMN_RECIPENAME + " TEXT, " +
                 COLUMN_SEARCHCODE + " INTEGER, " +
                 COLUMN_IMAGE + " TEXT, " +
-                COLUMN_LIKES + " INTEGER "  +
+                COLUMN_LIKES + " INTEGER, "  +
+                COLUMN_ING + " INTEGER "  +
                 ");";
         db.execSQL(query);
 
@@ -68,6 +70,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.d("DB", recipe.get_searchcode() +"");
         values.put(COLUMN_IMAGE, recipe.getImage());
         values.put(COLUMN_LIKES, recipe.get_likes());
+        values.put(COLUMN_ING, recipe.get_ingredent());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_RECIPES, null, values);
         db.close();
@@ -225,7 +228,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public ArrayList<Recipe> getBookmarks()
     {
         String recipename;
-        int searchcode, likes;
+        int searchcode, likes, ing;
         String image;
         ArrayList<Recipe> result = new ArrayList<Recipe>();
         SQLiteDatabase db = getWritableDatabase();
@@ -240,7 +243,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 searchcode = recordSet.getInt(recordSet.getColumnIndex("_searchcode"));
                 image = recordSet.getString(recordSet.getColumnIndex("_image"));
                 likes = recordSet.getInt(recordSet.getColumnIndex("_likes"));
-                Recipe recipe = new Recipe(recipename, searchcode, image, likes);
+                ing = recordSet.getInt(recordSet.getColumnIndex("_ing"));
+                Recipe recipe = new Recipe(recipename, searchcode, image, likes, ing);
                 Log.d("DB recipe", recipe.get_searchcode() + "");
                 result.add(recipe);
             }
