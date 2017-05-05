@@ -24,6 +24,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_RECIPENAME = "_recipename";
     public static final String COLUMN_INGREDIENT = "_ingredientname";
+    public static final String COLUMN_SEARCHCODE = "_searchcode";
 
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -33,7 +34,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query =  "CREATE TABLE " + TABLE_RECIPES + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_RECIPENAME + " TEXT " +
+                COLUMN_RECIPENAME + " TEXT, " +
+                COLUMN_SEARCHCODE + " INTEGER, " +
+                "UNIQUE (" + COLUMN_SEARCHCODE + ")" +
                 ");";
         db.execSQL(query);
 
@@ -55,6 +58,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     {
         ContentValues values = new ContentValues();
         values.put(COLUMN_RECIPENAME, recipe.get_recipename());
+        values.put(COLUMN_SEARCHCODE, recipe.get_searchcode());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_RECIPES, null, values);
         db.close();
@@ -71,10 +75,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void deleteRecipe(String recipeName)
+    public void deleteRecipe(String searchcode)
     {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_RECIPENAME +"=\"" + recipeName + "\"" );
+        db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_SEARCHCODE +"=\"" + searchcode + "\"" );
     }
 
     public void deleteIngredients(String recipeName)
@@ -101,6 +105,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
             // null could happen if we used our empty constructor
             if (recordSet.getString(recordSet.getColumnIndex("_recipename")) != null) {
                 dbString += recordSet.getString(recordSet.getColumnIndex("_recipename"));
+                dbString += " ";
+                dbString += recordSet.getString(recordSet.getColumnIndex("_searchcode"));
                 dbString += "\n";
             }
             recordSet.moveToNext();

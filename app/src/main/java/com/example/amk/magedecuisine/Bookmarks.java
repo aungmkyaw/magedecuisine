@@ -22,19 +22,7 @@ public class Bookmarks extends AppCompatActivity {
         printDatabase();
     }
 
-    public void addButtonClicked(View view)
-    {
-        Recipe recipe = new Recipe(bmInput.getText().toString().toString());
-        dbHandler.addRecipe(recipe);
-        printDatabase();
-    }
 
-    public void deleteButtonClicked(View view)
-    {
-        String inputText = bmInput.getText().toString();
-        dbHandler.deleteRecipe(inputText);
-        printDatabase();
-    }
 
     public void printDatabase()
     {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -50,6 +51,8 @@ public class SimilarRecipesBuilder extends AppCompatActivity {
             String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
             String JSONdetail = getIntent().getExtras().getString("json_dataDT");
             int likes = getIntent().getExtras().getInt("likesDT");
+            int recipeID = getIntent().getExtras().getInt("IDforSim");
+            Log.d("RecipeID", Integer.toString(recipeID));
             JSONresponse = response.getBody().toString();
 
             Intent intent = new Intent(getApplicationContext(), DisplayDetail.class);
@@ -58,6 +61,7 @@ public class SimilarRecipesBuilder extends AppCompatActivity {
             intent.putExtra("titleDT", title);
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);
+            intent.putExtra("recipeID", recipeID);
             startActivity(intent);
             overridePendingTransition(0, 0); //NO ACTIVITY ANIMATION
             finish();

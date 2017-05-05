@@ -3,6 +3,7 @@ package com.example.amk.magedecuisine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,6 +37,7 @@ public class DisplayListView extends AppCompatActivity{
             {
                 JSONObject JO = jsonArray.getJSONObject(count);
                 recipeID = JO.getInt("id");
+                //Log.d("RecipeID", Integer.toString(recipeID));
                 title = JO.getString("title");
                 likes = JO.getInt("likes");
                 image = JO.getString("image");
@@ -56,6 +58,7 @@ public class DisplayListView extends AppCompatActivity{
                     Intent intent = new Intent(getApplicationContext(), RecipesDetailBuilder.class);
                     Recipes obj = recipesAdapter.getItem(position);
                     intent.putExtra("idDT", obj.getID());
+                    //Log.d("RecipeID", Integer.toString(obj.getID()));
                     intent.putExtra("titleDT", obj.getTitle());
                     intent.putExtra("likesDT", obj.getLikes());
                     intent.putExtra("imageDT", obj.getImage());

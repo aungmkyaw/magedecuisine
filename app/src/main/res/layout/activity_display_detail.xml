@@ -52,11 +52,11 @@
 
     <Button
         android:text="View Recipe Instructions"
-        android:layout_width="180dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/instructionsTitle"
         android:gravity="center"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:background="@drawable/ovalbutton2"
         android:onClick="viewRecipeInstructions"
         android:layout_alignParentBottom="true"
@@ -64,16 +64,28 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="View Similar Recipes"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
         android:id="@+id/similarRecTitle"
-        android:gravity="center"
-        android:textSize="18dp"
-        android:background="@drawable/ovalbutton4"
-        android:onClick="viewSimilarRecipes"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@drawable/ovalbutton4"
+        android:gravity="center"
+        android:onClick="viewSimilarRecipes"
+        android:text="View Similar Recipes"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/bookmark"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalbutton4"
+        android:gravity="center"
+        android:onClick="bookMark"
+        android:text="Bookmark"
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

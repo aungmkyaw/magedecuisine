@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,12 +15,14 @@ import org.json.JSONObject;
 public class DisplayDetail extends AppCompatActivity {
 
     String json_string, json_simRecipes;
+    MyDBHandler dbHandler;
+    int recipeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_detail);
-
+        dbHandler = new MyDBHandler(this, null, null, 1);
         //TO POPULATE BASIC RECIPE DETAIL DATA
         ListView listView = (ListView) findViewById(R.id.listviewDT);
         RecipesDetailsAdapter recipesDetailAdapter = new RecipesDetailsAdapter(this, R.layout.activity_recipes_detail_builder);
@@ -29,9 +32,10 @@ public class DisplayDetail extends AppCompatActivity {
         GridView ingredientsList = (GridView) findViewById(R.id.gridIngredients);
         IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, R.layout.ingredient_layout);
         ingredientsList.setAdapter(ingredientsAdapter);
-
         json_string = getIntent().getExtras().getString("json_dataDT");
         json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
+        recipeID = getIntent().getExtras().getInt("recipeID");
+        Log.d("RecipeID", Integer.toString(recipeID));
         try {
             JSONObject jsonObject = new JSONObject(json_string);
 
@@ -79,4 +83,10 @@ public class DisplayDetail extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void bookMark(View view)
+    {
+        Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),getIntent().getExtras().getInt("recipeID"));
+        //Log.d("RecipeID", );
+        dbHandler.addRecipe(recipe);
+    }
 }

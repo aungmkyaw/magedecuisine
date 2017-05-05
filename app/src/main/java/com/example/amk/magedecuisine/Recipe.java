@@ -7,10 +7,20 @@ package com.example.amk.magedecuisine;
 public class Recipe {
     private int _id;
     private String _recipename;
+    private int _searchcode;
 
-    public Recipe(String recipename)
+    public int get_searchcode() {
+        return _searchcode;
+    }
+
+    public void set_searchcode(int _searchcode) {
+        this._searchcode = _searchcode;
+    }
+
+    public Recipe(String recipename, int searchcode)
     {
         this._recipename = recipename;
+        this._searchcode = searchcode;
     }
 
     public void set_id(int _id) {
