@@ -13,37 +13,48 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Pantry"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="28sp"
+        android:textStyle="bold|italic" />
 
     <EditText
         android:id="@+id/entItem"
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:ems="10"
+        android:textStyle="bold"
+        android:textSize="22sp"
         android:hint="Enter Item"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:inputType="textPersonName" />
 
     <Button
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:id="@+id/addBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/ovalbutton2"
         android:onClick="addBtnClicked"
         android:text="Add New Item" />
 
+    <ListView
+        android:layout_marginTop="20dp"
+        android:id="@+id/pantryView"
+        android:listSelector="@drawable/customselector"
+        android:layout_gravity="center"
+        android:layout_width="380dp"
+        android:layout_height="410dp"
+        android:background="@drawable/listviewbc"
+        android:text="TextView" />
+
     <Button
         android:id="@+id/searchBtn"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/ovalbutton1"
         android:onClick="sendMessage"
-        android:text="Search" />
-
-    <ListView
-        android:id="@+id/pantryView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TextView" />
+        android:text="Search By Pantry" />
 
 </LinearLayout>
