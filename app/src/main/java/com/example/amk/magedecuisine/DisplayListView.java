@@ -33,6 +33,7 @@ public class DisplayListView extends AppCompatActivity{
 
             //PARSING RECIPES
             jsonArray = new JSONArray(json_string);
+            Log.d("Result", json_string);
             while(count < jsonArray.length())
             {
                 JSONObject JO = jsonArray.getJSONObject(count);

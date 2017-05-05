@@ -29,6 +29,7 @@ public class Bookmarks extends AppCompatActivity {
     MyDBHandler dbHandler;
     int recipeID;
     Recipes recipes;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class Bookmarks extends AppCompatActivity {
                 Recipe obj = recipeAdapter.getItem(position);
                 //This is the ID you should use to search with the api
                 recipeID = obj.get_searchcode();
+                name = obj.get_recipename();
 
                 new CallMashapeAsync().execute();
 
@@ -76,7 +78,9 @@ public class Bookmarks extends AppCompatActivity {
 
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
+            //Suk need a url similar to RecipeBuilder but take recipeID and give back the same info. Right now this URL doesn't even give back the likes.
             String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
+            //String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + name + "&limitLicense=false&number=50&ranking=1";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
             try {
@@ -100,17 +104,16 @@ public class Bookmarks extends AppCompatActivity {
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             //String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
             //int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");
-            JSONArray jsonArray;
-            String title = "", image = "";
+            JSONObject JO;
+            String title, image;
             int recipeID, likes, ingredientsLeft, ingredientsUsed, ingredients, count = 0;
             String answer = response.getBody().toString();
-
+            Log.d("Answer", answer);
             try {
 
                 //PARSING RECIPES
-                jsonArray = new JSONArray(answer);
-                while (count < jsonArray.length()) {
-                    JSONObject JO = jsonArray.getJSONObject(count);
+                JO = new JSONObject(answer);
+
                     recipeID = JO.getInt("id");
                     //Log.d("RecipeID", Integer.toString(recipeID));
                     title = JO.getString("title");
@@ -122,7 +125,7 @@ public class Bookmarks extends AppCompatActivity {
                     recipes = new Recipes(recipeID, title, likes, image, ingredients);
                     count++;
                     Log.d("Ran", "Parsed!");
-                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
