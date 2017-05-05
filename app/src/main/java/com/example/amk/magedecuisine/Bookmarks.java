@@ -27,9 +27,9 @@ public class Bookmarks extends AppCompatActivity {
     EditText bmInput;
     TextView bookMarkView;
     MyDBHandler dbHandler;
-    int recipeID;
+    int recipeID, likes;
     Recipes recipes;
-    String name;
+    String name, imageurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class Bookmarks extends AppCompatActivity {
         temp = dbHandler.getBookmarks();
         for(int x = 0; x < temp.size(); x++)
         {
+            Log.d("list",temp.get(x).get_searchcode()+"");
             recipeAdapter.add(temp.get(x));
         }
 
@@ -55,7 +56,11 @@ public class Bookmarks extends AppCompatActivity {
                 Recipe obj = recipeAdapter.getItem(position);
                 //This is the ID you should use to search with the api
                 recipeID = obj.get_searchcode();
+
                 name = obj.get_recipename();
+                likes = obj.get_likes();
+                imageurl = obj.getImage();
+                Log.d("ID when saved", ""+recipeID + " " + name + " "  + imageurl );
 
                 new CallMashapeAsync().execute();
 
@@ -79,7 +84,8 @@ public class Bookmarks extends AppCompatActivity {
         protected HttpResponse<JsonNode> doInBackground(String... ing) {
 
             //Suk need a url similar to RecipeBuilder but take recipeID and give back the same info. Right now this URL doesn't even give back the likes.
-            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=false";
+            Log.d("URL", URL);
             //String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + name + "&limitLicense=false&number=50&ranking=1";
             String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
             HttpResponse<JsonNode> request = null;
@@ -106,10 +112,10 @@ public class Bookmarks extends AppCompatActivity {
             //int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");
             JSONObject JO;
             String title, image;
-            int recipeID, likes, ingredientsLeft, ingredientsUsed, ingredients, count = 0;
+            int ingredientsLeft, ingredientsUsed, ingredients, count = 0;
             String answer = response.getBody().toString();
             Log.d("Answer", answer);
-            try {
+            /*try {
 
                 //PARSING RECIPES
                 JO = new JSONObject(answer);
@@ -117,7 +123,7 @@ public class Bookmarks extends AppCompatActivity {
                     recipeID = JO.getInt("id");
                     //Log.d("RecipeID", Integer.toString(recipeID));
                     title = JO.getString("title");
-                    likes = JO.getInt("likes");
+
                     image = JO.getString("image");
                     ingredientsLeft = JO.getInt("missedIngredientCount");
                     ingredientsUsed = JO.getInt("usedIngredientCount");
@@ -130,14 +136,15 @@ public class Bookmarks extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.d("Didn't run", "JSOException");
-            }
+            }*/
 
             Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
             intent.putExtra("json_dataDT", answer);
-            intent.putExtra("IDforSim", recipes.getID());
-            intent.putExtra("titleDT", recipes.getTitle());
-            intent.putExtra("likesDT", recipes.getLikes());
-            intent.putExtra("imageDT", recipes.getImage());
+            intent.putExtra("IDforSim", recipeID);
+            Log.d("RecipeID in Bookmark", ""+recipeID);
+            intent.putExtra("titleDT", name);
+            intent.putExtra("likesDT", likes);
+            intent.putExtra("imageDT", imageurl);
             startActivity(intent);
             overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
             finish();

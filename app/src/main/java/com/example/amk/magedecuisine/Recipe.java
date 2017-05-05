@@ -9,6 +9,24 @@ public class Recipe {
     private String _recipename;
     private int _searchcode;
 
+    public Recipe(String recipename, int searchcode, String image, int likes)
+    {
+        this._recipename = recipename;
+        this._searchcode = searchcode;
+        this.image=image;
+        this._likes=likes;
+    }
+
+    public int get_likes() {
+        return _likes;
+    }
+
+    public void set_likes(int _likes) {
+        this._likes = _likes;
+    }
+
+    private int _likes;
+
     public String getImage() {
         return image;
     }
@@ -27,12 +45,6 @@ public class Recipe {
         this._searchcode = _searchcode;
     }
 
-    public Recipe(String recipename, int searchcode, String image)
-    {
-        this._recipename = recipename;
-        this._searchcode = searchcode;
-        this.image=image;
-    }
 
     public void set_id(int _id) {
         this._id = _id;

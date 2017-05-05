@@ -19,7 +19,7 @@ import android.database.sqlite.SQLiteConstraintException;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME= "recipes.db";
     private static final String DATABASE_INGREDIENT_NAME= "ingredients.db";
     public static final String TABLE_RECIPES = "recipes";
@@ -29,6 +29,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_INGREDIENT = "_ingredientname";
     public static final String COLUMN_SEARCHCODE = "_searchcode";
     public static final String COLUMN_IMAGE = "_image";
+    public static final String COLUMN_LIKES = "_likes";
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -40,7 +41,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 COLUMN_RECIPENAME + " TEXT, " +
                 COLUMN_SEARCHCODE + " INTEGER, " +
                 COLUMN_IMAGE + " TEXT, " +
-                "UNIQUE (" + COLUMN_SEARCHCODE + ")" +
+                COLUMN_LIKES + " INTEGER "  +
                 ");";
         db.execSQL(query);
 
@@ -64,7 +65,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_RECIPENAME, recipe.get_recipename());
         values.put(COLUMN_SEARCHCODE, recipe.get_searchcode());
+        Log.d("DB", recipe.get_searchcode() +"");
         values.put(COLUMN_IMAGE, recipe.getImage());
+        values.put(COLUMN_LIKES, recipe.get_likes());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_RECIPES, null, values);
         db.close();
@@ -222,7 +225,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public ArrayList<Recipe> getBookmarks()
     {
         String recipename;
-        int searchcode;
+        int searchcode, likes;
         String image;
         ArrayList<Recipe> result = new ArrayList<Recipe>();
         SQLiteDatabase db = getWritableDatabase();
@@ -235,8 +238,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
             if (recordSet.getString(recordSet.getColumnIndex("_recipename")) != null) {
                 recipename = recordSet.getString(recordSet.getColumnIndex("_recipename"));
                 searchcode = recordSet.getColumnIndex("_searchcode");
+                Log.d("DB retreieve", searchcode + "");
                 image = recordSet.getString(recordSet.getColumnIndex("_image"));
-                Recipe recipe = new Recipe(recipename, searchcode, image);
+                likes = recordSet.getColumnIndex("_likes");
+                Recipe recipe = new Recipe(recipename, searchcode, image, likes);
                 result.add(recipe);
             }
             recordSet.moveToNext();

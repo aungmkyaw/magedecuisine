@@ -38,7 +38,7 @@ public class DisplayDetail extends AppCompatActivity {
         json_string = getIntent().getExtras().getString("json_dataDT");
         json_simRecipes = getIntent().getExtras().getString("json_simRecipes");
         recipeID = getIntent().getExtras().getInt("recipeID");
-        Log.d("RecipeID", Integer.toString(recipeID));
+        Log.d("RecipeIDinDisplayDetail", Integer.toString(recipeID));
         if(dbHandler.checkRecipeStored(recipeID))
         {
             bookMark.setText("Remove");
@@ -104,7 +104,7 @@ public class DisplayDetail extends AppCompatActivity {
         }
         else
         {
-            Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),getIntent().getExtras().getInt("recipeID"),getIntent().getExtras().getString("imageDT"));
+            Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),recipeID,getIntent().getExtras().getString("imageDT"), getIntent().getExtras().getInt("likesDT"));
             dbHandler.addRecipe(recipe);
             bookMark.setText("Remove");
         }
