@@ -8,9 +8,11 @@
         android:text="Recipe Details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:id="@+id/mainTitle"
         android:gravity="center"
         android:textSize="24dp"
+        android:backgroundTint="#006B6C"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -25,12 +27,14 @@
 
     <TextView
         android:text="Ingredient List"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
+        android:backgroundTint="#006B6C"
         android:layout_height="wrap_content"
         android:id="@+id/ingredientTitle"
         android:layout_below="@id/listviewDT"
         android:gravity="center"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -56,7 +60,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/instructionsTitle"
         android:gravity="center"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:background="@drawable/ovalbutton2"
         android:onClick="viewRecipeInstructions"
         android:layout_alignParentBottom="true"
@@ -74,17 +78,17 @@
         android:gravity="center"
         android:onClick="viewSimilarRecipes"
         android:text="View Similar Recipes"
-        android:textSize="18dp" />
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/bookmark"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/ovalbutton4"
+        android:background="@drawable/ovalbutton3"
         android:gravity="center"
         android:onClick="bookMark"
         android:text="Bookmark"
-        android:textSize="18dp"
+        android:textSize="14sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
