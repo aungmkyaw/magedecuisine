@@ -9,11 +9,16 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,6 +28,7 @@ public class Bookmarks extends AppCompatActivity {
     TextView bookMarkView;
     MyDBHandler dbHandler;
     int recipeID;
+    Recipes recipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class Bookmarks extends AppCompatActivity {
                 //Suk I need you to build something similar to CallMashapeAsync().execute(ingredients); in RecipeBuilder only it takes the ID as search instead of ingredient and then pass the result to RecipesDetailBuilder
                 Recipe obj = recipeAdapter.getItem(position);
                 //This is the ID you should use to search with the api
-                recipeID = obj.get_id();
+                recipeID = obj.get_searchcode();
 
                 new CallMashapeAsync().execute();
 
@@ -92,21 +98,48 @@ public class Bookmarks extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(HttpResponse<JsonNode> response) {
-            String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
-            int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");
-
+            //String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
+            //int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");
+            JSONArray jsonArray;
+            String title = "", image = "";
+            int recipeID, likes, ingredientsLeft, ingredientsUsed, ingredients, count = 0;
             String answer = response.getBody().toString();
+
+            try {
+
+                //PARSING RECIPES
+                jsonArray = new JSONArray(answer);
+                while (count < jsonArray.length()) {
+                    JSONObject JO = jsonArray.getJSONObject(count);
+                    recipeID = JO.getInt("id");
+                    //Log.d("RecipeID", Integer.toString(recipeID));
+                    title = JO.getString("title");
+                    likes = JO.getInt("likes");
+                    image = JO.getString("image");
+                    ingredientsLeft = JO.getInt("missedIngredientCount");
+                    ingredientsUsed = JO.getInt("usedIngredientCount");
+                    ingredients = ingredientsLeft + ingredientsUsed;
+                    recipes = new Recipes(recipeID, title, likes, image, ingredients);
+                    count++;
+                    Log.d("Ran", "Parsed!");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.d("Didn't run", "JSOException");
+            }
 
             Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
             intent.putExtra("json_dataDT", answer);
-            intent.putExtra("IDforSim", recipeID);
-            intent.putExtra("titleDT", title);
-            intent.putExtra("likesDT", likes);
-            intent.putExtra("imageDT", image);
+            intent.putExtra("IDforSim", recipes.getID());
+            intent.putExtra("titleDT", recipes.getTitle());
+            intent.putExtra("likesDT", recipes.getLikes());
+            intent.putExtra("imageDT", recipes.getImage());
             startActivity(intent);
             overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
             finish();
         }
+
     }
 
 }
