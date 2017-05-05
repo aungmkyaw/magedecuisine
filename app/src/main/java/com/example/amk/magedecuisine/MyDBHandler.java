@@ -237,11 +237,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
             // null could happen if we used our empty constructor
             if (recordSet.getString(recordSet.getColumnIndex("_recipename")) != null) {
                 recipename = recordSet.getString(recordSet.getColumnIndex("_recipename"));
-                searchcode = recordSet.getColumnIndex("_searchcode");
-                Log.d("DB retreieve", searchcode + "");
+                searchcode = recordSet.getInt(recordSet.getColumnIndex("_searchcode"));
                 image = recordSet.getString(recordSet.getColumnIndex("_image"));
                 likes = recordSet.getColumnIndex("_likes");
                 Recipe recipe = new Recipe(recipename, searchcode, image, likes);
+                Log.d("DB recipe", recipe.get_searchcode() + "");
                 result.add(recipe);
             }
             recordSet.moveToNext();

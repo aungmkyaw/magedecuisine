@@ -43,6 +43,7 @@ public class Bookmarks extends AppCompatActivity {
         listView.setAdapter(recipeAdapter);
         ArrayList<Recipe> temp = new ArrayList<Recipe>();
         temp = dbHandler.getBookmarks();
+        Log.d("String", dbHandler.databaseToString());
         for(int x = 0; x < temp.size(); x++)
         {
             Log.d("list",temp.get(x).get_searchcode()+"");
