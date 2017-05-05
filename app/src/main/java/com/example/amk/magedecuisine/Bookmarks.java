@@ -38,6 +38,9 @@ public class Bookmarks extends AppCompatActivity {
             public void onItemClick(AdapterView<?> listView, View v, int position, long id)
             {
                 //Suk I need you to build something similar to CallMashapeAsync().execute(ingredients); in RecipeBuilder only it takes the ID as search instead of ingredient and then pass the result to RecipesDetailBuilder
+                Recipe obj = recipeAdapter.getItem(position);
+                //This is the ID you should use to search with the api
+                obj.get_id();
 
             }
         };
