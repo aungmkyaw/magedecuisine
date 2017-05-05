@@ -239,7 +239,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 recipename = recordSet.getString(recordSet.getColumnIndex("_recipename"));
                 searchcode = recordSet.getInt(recordSet.getColumnIndex("_searchcode"));
                 image = recordSet.getString(recordSet.getColumnIndex("_image"));
-                likes = recordSet.getColumnIndex("_likes");
+                likes = recordSet.getInt(recordSet.getColumnIndex("_likes"));
                 Recipe recipe = new Recipe(recipename, searchcode, image, likes);
                 Log.d("DB recipe", recipe.get_searchcode() + "");
                 result.add(recipe);
