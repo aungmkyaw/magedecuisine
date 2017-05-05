@@ -50,6 +50,7 @@ public class RecipesDetailBuilder extends AppCompatActivity {
         protected void onPostExecute(HttpResponse<JsonNode> response) {
             String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
             int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");;
+            int ing = getIntent().getExtras().getInt("ingAmount");
 
             answer = response.getBody().toString();
 
@@ -59,6 +60,7 @@ public class RecipesDetailBuilder extends AppCompatActivity {
             intent.putExtra("titleDT", title);
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);
+            intent.putExtra("ing", ing );
             startActivity(intent);
             overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
             finish();

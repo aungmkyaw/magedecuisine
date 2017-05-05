@@ -26,7 +26,7 @@
         android:hint="Edit"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:backgroundTint="@android:color/holo_red_dark"
+        android:backgroundTint="#0A014D"
         android:layout_toLeftOf="@+id/imageButton"
         android:layout_toStartOf="@+id/imageButton" />
 

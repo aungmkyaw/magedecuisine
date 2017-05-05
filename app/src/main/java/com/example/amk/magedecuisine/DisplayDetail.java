@@ -104,7 +104,7 @@ public class DisplayDetail extends AppCompatActivity {
         }
         else
         {
-            Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),recipeID,getIntent().getExtras().getString("imageDT"), getIntent().getExtras().getInt("likesDT"));
+            Recipe recipe = new Recipe(getIntent().getExtras().getString("titleDT"),recipeID,getIntent().getExtras().getString("imageDT"), getIntent().getExtras().getInt("likesDT"), getIntent().getExtras().getInt("ingAmount"));
             dbHandler.addRecipe(recipe);
             bookMark.setText("Remove");
         }

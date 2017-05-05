@@ -50,12 +50,12 @@ public class RecipeAdapter extends ArrayAdapter {
         if (row == null)
         {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = layoutInflater.inflate(R.layout.row_bookmark, parent, false);
+            row = layoutInflater.inflate(R.layout.row_layout, parent, false);
             recipeHolder = new RecipeAdapter.RecipeHolder();
             recipeHolder.tx_title = (TextView) row.findViewById(R.id.tx_title);
-            //recipeHolder.tx_likes = (TextView) row.findViewById(R.id.tx_likes);
+            recipeHolder.tx_likes = (TextView) row.findViewById(R.id.tx_likes);
             recipeHolder.tx_image = (ImageView) row.findViewById(R.id.tx_image);
-            //recipeHolder.tx_ingredients = (TextView) row.findViewById(R.id.tx_ingredients);
+            recipeHolder.tx_ingredients = (TextView) row.findViewById(R.id.tx_ingredients);
             row.setTag(recipeHolder);
         }
 
@@ -67,15 +67,15 @@ public class RecipeAdapter extends ArrayAdapter {
         Recipe recipes = (Recipe) this.getItem(position);
         Picasso.with(this.getContext()).load(recipes.getImage()).resize(150,150).into(recipeHolder.tx_image);
         recipeHolder.tx_title.setText(recipes.get_recipename());
-        //recipeHolder.tx_likes.setText(Integer.toString(recipes.getLikes()));
-        //recipeHolder.tx_ingredients.setText(Integer.toString(recipes.getIngredients()));
+        recipeHolder.tx_likes.setText(Integer.toString(recipes.get_likes()));
+        recipeHolder.tx_ingredients.setText(Integer.toString(recipes.get_ingredent()));
 
         return row;
     }
 
     static class RecipeHolder
     {
-        TextView tx_title;
+        TextView tx_title, tx_likes, tx_ingredients;
         ImageView tx_image;
     }
 }

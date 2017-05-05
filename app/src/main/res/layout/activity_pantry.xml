@@ -18,14 +18,15 @@
 
     <EditText
         android:id="@+id/entItem"
-        android:layout_width="match_parent"
+        android:layout_width="368dp"
         android:layout_height="59dp"
+        android:backgroundTint="#8B020B"
         android:ems="10"
-        android:textStyle="bold"
-        android:textSize="22sp"
         android:hint="Enter Item"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:inputType="textPersonName" />
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <Button
         android:layout_marginTop="10dp"
@@ -37,8 +38,16 @@
         android:onClick="addBtnClicked"
         android:text="Add New Item" />
 
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#4D2795"
+        android:textAlignment="center"
+        android:text="*** Hold to delete item in pantry ***" />
+
     <ListView
-        android:layout_marginTop="20dp"
         android:id="@+id/pantryView"
         android:listSelector="@drawable/customselector"
         android:layout_gravity="center"

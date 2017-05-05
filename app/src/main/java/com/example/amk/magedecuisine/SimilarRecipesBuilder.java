@@ -52,6 +52,7 @@ public class SimilarRecipesBuilder extends AppCompatActivity {
             String JSONdetail = getIntent().getExtras().getString("json_dataDT");
             int likes = getIntent().getExtras().getInt("likesDT");
             int recipeID = getIntent().getExtras().getInt("IDforSim");
+            int ing = getIntent().getExtras().getInt("ing");
             Log.d("RecipeID", Integer.toString(recipeID));
             JSONresponse = response.getBody().toString();
 
@@ -62,6 +63,7 @@ public class SimilarRecipesBuilder extends AppCompatActivity {
             intent.putExtra("likesDT", likes);
             intent.putExtra("imageDT", image);
             intent.putExtra("recipeID", recipeID);
+            intent.putExtra("ingAmount", ing);
             startActivity(intent);
             overridePendingTransition(0, 0); //NO ACTIVITY ANIMATION
             finish();

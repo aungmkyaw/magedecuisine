@@ -63,6 +63,7 @@ public class DisplayListView extends AppCompatActivity{
                     intent.putExtra("titleDT", obj.getTitle());
                     intent.putExtra("likesDT", obj.getLikes());
                     intent.putExtra("imageDT", obj.getImage());
+                    intent.putExtra("ingAmount", obj.getIngredients());
                     startActivity(intent);
 
                 }

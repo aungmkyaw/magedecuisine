@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Ingredients"
-        android:drawableRight="@drawable/ingredients"
+        android:drawableRight="@mipmap/meal"
         android:gravity="center"
         android:textSize="20sp"
         android:layout_alignBottom="@+id/tx_image"
