@@ -22,6 +22,7 @@ public class Bookmarks extends AppCompatActivity {
     EditText bmInput;
     TextView bookMarkView;
     MyDBHandler dbHandler;
+    int recipeID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,50 +47,9 @@ public class Bookmarks extends AppCompatActivity {
                 //Suk I need you to build something similar to CallMashapeAsync().execute(ingredients); in RecipeBuilder only it takes the ID as search instead of ingredient and then pass the result to RecipesDetailBuilder
                 Recipe obj = recipeAdapter.getItem(position);
                 //This is the ID you should use to search with the api
-                final int recipeID = obj.get_id();
+                recipeID = obj.get_id();
 
-                class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
-
-                    protected HttpResponse<JsonNode> doInBackground(String... ing) {
-
-                        String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
-                        String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
-                        HttpResponse<JsonNode> request = null;
-                        try {
-                            request = Unirest.get(URL)
-                                    .header("X-Mashape-Key", APIKey)
-                                    .header("Accept", "application/json")
-                                    .asJson();
-                        } catch (UnirestException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        return request;
-                    }
-
-                    @Override
-                    protected void onProgressUpdate(Integer...integers) {
-                    }
-
-                    @Override
-                    protected void onPostExecute(HttpResponse<JsonNode> response) {
-                        String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
-                        int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");;
-
-                        String answer = response.getBody().toString();
-
-                        Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
-                        intent.putExtra("json_dataDT", answer);
-                        intent.putExtra("IDforSim", recipeID);
-                        intent.putExtra("titleDT", title);
-                        intent.putExtra("likesDT", likes);
-                        intent.putExtra("imageDT", image);
-                        startActivity(intent);
-                        overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
-                        finish();
-                    }
-                }
+                new CallMashapeAsync().execute();
 
             }
         };
@@ -106,5 +66,47 @@ public class Bookmarks extends AppCompatActivity {
     }
 
 
+    private class CallMashapeAsync extends AsyncTask<String, Integer, HttpResponse<JsonNode>> {
+
+        protected HttpResponse<JsonNode> doInBackground(String... ing) {
+
+            String URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/information?includeNutrition=true";
+            String APIKey = "KgebgXWQeHmshgowAPA7lmc3utfAp1Vu0jyjsnN2rSrkXexgCY";
+            HttpResponse<JsonNode> request = null;
+            try {
+                request = Unirest.get(URL)
+                        .header("X-Mashape-Key", APIKey)
+                        .header("Accept", "application/json")
+                        .asJson();
+            } catch (UnirestException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return request;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer...integers) {
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse<JsonNode> response) {
+            String title = getIntent().getExtras().getString("titleDT"), image = getIntent().getExtras().getString("imageDT");
+            int likes = getIntent().getExtras().getInt("likesDT"), recipeID = getIntent().getExtras().getInt("idDT");
+
+            String answer = response.getBody().toString();
+
+            Intent intent = new Intent(getApplicationContext(), SimilarRecipesBuilder.class);
+            intent.putExtra("json_dataDT", answer);
+            intent.putExtra("IDforSim", recipeID);
+            intent.putExtra("titleDT", title);
+            intent.putExtra("likesDT", likes);
+            intent.putExtra("imageDT", image);
+            startActivity(intent);
+            overridePendingTransition(0, 0);//NO ACTIVITY ANIMATION
+            finish();
+        }
+    }
 
 }
