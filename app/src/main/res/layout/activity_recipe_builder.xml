@@ -10,25 +10,13 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/edit_message"
-        android:gravity="center"
-        android:text="Current Pantry"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Recipe Builder"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="28sp"
+        android:textStyle="bold|italic" />
 
     <EditText
         android:id="@+id/edit_message"
@@ -36,6 +24,9 @@
         android:layout_height="50dp"
         android:layout_below="@id/textView2"
         android:hint="Edit"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:layout_toLeftOf="@+id/imageButton"
         android:layout_toStartOf="@+id/imageButton" />
 
@@ -59,14 +50,30 @@
         android:layout_toLeftOf="@+id/ImageButton01"
         android:layout_toStartOf="@+id/ImageButton01" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edit_message"
+        android:gravity="center"
+        android:text="Current Pantry"
+        android:textSize="28sp"
+        android:textStyle="bold|italic" />
+
     <ListView
         android:id="@+id/pantryView"
-        android:layout_width="500dp"
-        android:layout_height="450dp"
+        android:listSelector="@drawable/customselector"
+        android:layout_gravity="center"
+        android:layout_width="380dp"
+        android:layout_height="500dp"
+        android:background="@drawable/listviewbc"
         android:text="TextView"
         android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
 
 </RelativeLayout>
