@@ -66,15 +66,15 @@
 
     <ListView
         android:id="@+id/pantryView"
-        android:listSelector="@drawable/customselector"
-        android:layout_gravity="center"
-        android:layout_width="380dp"
-        android:layout_height="500dp"
-        android:background="@drawable/listviewbc"
-        android:text="TextView"
+        android:layout_width="328dp"
+        android:layout_height="400dp"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/listviewbc"
+        android:listSelector="@drawable/customselector"
+        android:text="TextView" />
 
 
 </RelativeLayout>

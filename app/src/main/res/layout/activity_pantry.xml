@@ -51,10 +51,11 @@
         android:id="@+id/pantryView"
         android:listSelector="@drawable/customselector"
         android:layout_gravity="center"
-        android:layout_width="380dp"
-        android:layout_height="410dp"
+        android:layout_width="328dp"
+        android:layout_height="280dp"
         android:background="@drawable/listviewbc"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_weight="0.73" />
 
     <Button
         android:id="@+id/searchBtn"
